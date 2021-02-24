@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zch-star.github.io</id>
     <title>zch-star 的博客</title>
-    <updated>2021-02-24T04:04:55.909Z</updated>
+    <updated>2021-02-24T04:10:03.356Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zch-star.github.io"/>
     <link rel="self" href="https://zch-star.github.io/atom.xml"/>
@@ -10,6 +10,944 @@
     <logo>https://zch-star.github.io/images/avatar.png</logo>
     <icon>https://zch-star.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, zch-star 的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[OI 知识树]]></title>
+        <id>https://zch-star.github.io/post/oi-zhi-shi-shu/</id>
+        <link href="https://zch-star.github.io/post/oi-zhi-shi-shu/">
+        </link>
+        <updated>2021-02-24T04:08:16.000Z</updated>
+        <content type="html"><![CDATA[<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle mathsize="2.074em"><mstyle mathcolor="RoyalBlue"><mrow><mi mathvariant="normal">『</mi><mi mathvariant="script">O</mi><mi mathvariant="script">I</mi><mtext>  </mtext><mi mathvariant="normal">知</mi><mi mathvariant="normal">识</mi><mi mathvariant="normal">树</mi><mi mathvariant="normal">』</mi></mrow></mstyle></mstyle></mrow><annotation encoding="application/x-tex">\huge\color{RoyalBlue}\mathcal{『OI\thickspace知识树』}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.41722642em;vertical-align:0em;"></span><span class="mord sizing reset-size6 size10" style="color:RoyalBlue;"><span class="mord cjk_fallback" style="color:RoyalBlue;">『</span><span class="mord mathcal" style="margin-right:0.02778em;color:RoyalBlue;">O</span><span class="mord mathcal" style="margin-right:0.07382em;color:RoyalBlue;">I</span><span class="mspace" style="color:RoyalBlue;margin-right:0.2777777777777778em;"></span><span class="mord cjk_fallback" style="color:RoyalBlue;">知</span><span class="mord cjk_fallback" style="color:RoyalBlue;">识</span><span class="mord cjk_fallback" style="color:RoyalBlue;">树</span><span class="mord cjk_fallback" style="color:RoyalBlue;">』</span></span></span></span></span></p>
+<hr>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle mathsize="1.44em"><mstyle mathcolor="LimeGreen"><mrow><mi mathvariant="normal">一</mi><mi mathvariant="normal">、</mi><mi mathvariant="normal">数</mi><mi mathvariant="normal">据</mi><mi mathvariant="normal">结</mi><mi mathvariant="normal">构</mi></mrow></mstyle></mstyle></mrow><annotation encoding="application/x-tex">\Large\color{LimeGreen}\mathsf{一、数据结构}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0em;vertical-align:0em;"></span><span class="mord sizing reset-size6 size8" style="color:LimeGreen;"><span class="mord cjk_fallback" style="color:LimeGreen;">一</span><span class="mord cjk_fallback" style="color:LimeGreen;">、</span><span class="mord cjk_fallback" style="color:LimeGreen;">数</span><span class="mord cjk_fallback" style="color:LimeGreen;">据</span><span class="mord cjk_fallback" style="color:LimeGreen;">结</span><span class="mord cjk_fallback" style="color:LimeGreen;">构</span></span></span></span></span></p>
+<ol>
+<li>
+<p>栈</p>
+<ul>
+<li>
+<p>单调栈</p>
+<p>$ \diamond$ 例题：<a href="https://www.luogu.com.cn/problem/P5788">P5788 【模板】单调栈</a></p>
+<p>$ \diamond$ 代码：</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;stack&gt;
+using namespace std;
+const int MAXN = 3e6;
+int n, top = 0, a[MAXN + 5], f[MAXN + 5], q[MAXN + 5];
+int main() {
+	cin &gt;&gt; n;
+	for (int i = 1; i &lt;= n; i++) cin &gt;&gt; a[i];
+	for (int i = 1; i &lt;= n; i++) {
+		while (top &gt; 0 &amp;&amp; a[q[top]] &lt; a[i]) f[q[top]] = i, top--;
+		top++; q[top] = i;
+	}
+	for (int i = 1; i &lt;= n; i++) cout &lt;&lt; f[i] &lt;&lt; &quot; &quot;;
+	return 0;
+}
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<ol start="2">
+<li>
+<p>队列</p>
+<ul>
+<li>
+<p>优先队列</p>
+<p>$ \diamond$ 例题：<a href="https://www.luogu.com.cn/problem/P1090">P1090 [NOIP2004 提高组] 合并果子</a></p>
+<p>$ \diamond$ 代码：</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+int n, x, ans;
+priority_queue &lt;int, vector&lt;int&gt;, greater&lt;int&gt; &gt;q;
+int main() {
+	cin &gt;&gt; n;
+	for (int i = 1; i &lt;= n; i++) cin &gt;&gt; x, q.push(x);
+	while (q.size() &gt;= 2){
+		int a = q.top(); q.pop();
+		int b = q.top(); q.pop();
+		ans += a + b;
+		q.push(a + b);
+	}
+	cout &lt;&lt; ans &lt;&lt; endl;
+	return 0;
+}
+</code></pre>
+</li>
+<li>
+<p>单调队列</p>
+<p>$ \diamond$ 例题：<a href="https://www.luogu.com.cn/problem/P1440">P1440 求m区间内的最小值</a></p>
+<p>$ \diamond$ 代码：</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+int n, m, a[2000010], head, tail;
+struct Node {
+	int data, num;
+} q[2000010];
+int main() {
+	scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
+	for (int i = 1; i &lt;= n; i++) scanf(&quot;%d&quot;, &amp;a[i]);
+	printf(&quot;0\n&quot;);
+	head++, q[head].data = a[1], q[head].num = 1; tail++;
+	for (int i = 2; i &lt;= n; i++) {
+		while (i - q[head].num &gt; m) head++;
+		printf(&quot;%d\n&quot;, q[head].data);
+		while (q[tail].data &gt; a[i] &amp;&amp; tail &gt;= head) tail--;
+		tail++; q[tail].data = a[i]; q[tail].num = i;
+	}
+	return 0;
+}
+</code></pre>
+</li>
+<li>
+<p>双端队列</p>
+<p>$ \diamond$ 例题：<a href="https://www.luogu.com.cn/problem/P2032">P2032 扫描</a></p>
+<p>$ \diamond$ 代码：</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+int n, m, a[2000010], head, tail;
+struct Node {
+	int data, num;
+} q[2000010];
+int main() {
+	scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
+	for (int i = 1; i &lt;= n; i++) scanf(&quot;%d&quot;, &amp;a[i]);
+	head++, q[head].data = a[1], q[head].num = 1; tail++;
+	for (int i = 2; i &lt;= n; i++) {
+		while (i - q[head].num &gt;= m) head++;
+		while (q[tail].data &lt; a[i] &amp;&amp; tail &gt;= head) tail--;
+		tail++; q[tail].data = a[i]; q[tail].num = i;
+		if (i &gt;= m) printf(&quot;%d\n&quot;, q[head].data);
+	}
+	return 0;
+}
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<ol start="3">
+<li>
+<p>堆</p>
+<ul>
+<li>
+<p>二叉堆</p>
+<p>$ \diamond$ 例题：<a href="https://www.luogu.com.cn/problem/P1334">P1334 瑞瑞的木板</a></p>
+<p>$ \diamond$ 代码：</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+
+int n;
+long long ans;
+priority_queue&lt; ll, vector&lt;ll&gt;, greater&lt;ll&gt; &gt; a;
+
+static char buf[100000],*p1=buf,*p2=buf;
+#define gc p1==p2&amp;&amp;(p2=(p1=buf)+fread(buf,1,100000,stdin),p1==p2)?EOF:*p1++;
+inline ll read() {
+	ll res=0,w=0;
+	char c=gc;
+	while (!isdigit(c)) w|=c=='-',c=gc;
+	while (isdigit(c)) res=(res&lt;&lt;1)+(res&lt;&lt;3)+(c^48),c=gc;
+	if (w) res=-res;
+	return res;
+}
+
+inline void write(ll x) {
+	static int sta[50],top=0;
+	if (x&lt;0) putchar('-'),x=-x;
+	do {
+		sta[top++]=x%10,x/=10;
+	}while (x);
+	while (top) putchar(sta[--top]+48);
+	putchar('\n');
+}
+
+signed main() {
+// 	IOS;
+	n = read();
+	for (register int i = 1; i &lt;= n; ++i) {
+		int k = read();
+		a.push(k);
+	}
+	for (register int i = 1; i &lt; n; ++i) {
+		int p, q;
+		p = a.top(); a.pop();
+		q = a.top(); a.pop();
+		ans += p + q;
+		a.push(p + q);
+	}
+	write(ans);
+	return 0;
+}
+</code></pre>
+</li>
+<li>
+<p>左偏树</p>
+<p>$ \diamond$ 例题：<a href="https://www.luogu.com.cn/problem/P3377">P3377 【模板】左偏树（可并堆）</a></p>
+<p>$ \diamond$ 代码：</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+const int MAXN=100010;
+int n, m, op, x, y;
+int lc[MAXN], rc[MAXN], dist[MAXN], rt[MAXN];
+bool tf[MAXN];
+struct node
+{
+    int id, v;
+    bool operator&lt;(node x)const{return v==x.v?id&lt;x.id:v&lt;x.v;}
+}v[MAXN];
+int __Find(int x){return rt[x]==x?x:rt[x]=__Find(rt[x]);}
+int __Merge(int x, int y) {
+	if (!x || !y) return x + y;
+	if (v[y] &lt; v[x]) swap(x, y);
+	rc[x] = __Merge(rc[x], y);
+    if (dist[lc[x]] &lt; dist[rc[x]]) swap(lc[x], rc[x]);
+    dist[x] = dist[rc[x]] + 1;
+    return x;
+}
+int main() {
+	dist[0] = -1;
+	scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
+	for (int i = 1; i &lt;= n; i++) scanf(&quot;%d&quot;, &amp;v[i].v), rt[i] = i, v[i].id = i;
+	for (int i = 1; i &lt;= m; i++) {
+		scanf(&quot;%d%d&quot;, &amp;op, &amp;x);
+		if (op == 1) {
+			scanf(&quot;%d&quot;, &amp;y);
+			if (tf[x] || tf[y]) continue;
+			x = __Find(x); y = __Find(y);
+			if (x != y) rt[x] = rt[y] = __Merge(x, y);
+		}
+		if (op == 2) {
+			if (tf[x]) {printf(&quot;-1\n&quot;); continue;}
+			x = __Find(x);
+			printf(&quot;%d\n&quot;, v[x].v);
+			tf[x] = true;
+			rt[lc[x]] = rt[rc[x]] = rt[x] = __Merge(lc[x], rc[x]);
+			lc[x] = rc[x] = dist[x] = 0;
+		}
+	}
+	return 0;
+}
+</code></pre>
+</li>
+<li>
+<p>斜堆</p>
+<p>$ \diamond$ 例题：<a href="https://www.luogu.com.cn/problem/P2475">P2475 [SCOI2008]斜堆</a></p>
+<p>$ \diamond$ 代码：</p>
+<pre><code class="language-cpp">待占坑。
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<ol start="3">
+<li>
+<p>并查集</p>
+<ul>
+<li>
+<p>模板并查集</p>
+<p>$ \diamond$ 例题：<a href="https://www.luogu.com.cn/problem/P1551">P1551 亲戚</a></p>
+<p>$ \diamond$ 代码：</p>
+<pre><code class="language-pascal">var
+  f:array[0..10001] of longint;
+  n,m,p,i,x,y:longint;
+
+function find(x:longint):longint;
+begin
+  if f[x]=x then exit(x);
+  f[x]:=find(f[x]);
+  exit(f[x]);
+end;
+
+begin
+  readln(n,m,p);
+  for i:=1 to n do f[i]:=i;
+  for i:=1 to m do
+    begin
+      readln(x,y);
+      x:=find(x);
+      y:=find(y);
+      f[y]:=x;
+    end;
+  for i:=1 to p do
+    begin
+      readln(x,y);
+      x:=find(x);
+      y:=find(y);
+      if x=y then writeln('Yes') else writeln('No');
+    end;
+end.
+</code></pre>
+</li>
+<li>
+<p>带权并查集</p>
+<p>$ \diamond$ 例题：<a href="https://www.luogu.com.cn/problem/P2024">P2024 [NOI2001] 食物链</a></p>
+<p>$ \diamond$ 代码：</p>
+<pre><code class="language-cpp">待占坑。
+</code></pre>
+<p>$ \diamond$ 例题：<a href="https://www.luogu.com.cn/problem/P1525">P1525 [NOIP2010 提高组] 关押罪犯</a></p>
+<p>$ \diamond$ 代码：</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+const int MAXN = 1e5+5;
+struct Node {
+	int a, b, c;
+};
+int n, m, f[MAXN &lt;&lt; 1];
+Node a[MAXN];
+inline int __Find(int x) {
+	if (f[x] != x) f[x] = __Find(f[x]);
+	return f[x];
+}
+
+typedef long long ll;
+static char buf[100000],*p1=buf,*p2=buf;
+#define gc p1==p2&amp;&amp;(p2=(p1=buf)+fread(buf,1,100000,stdin),p1==p2)?EOF:*p1++;
+inline ll read() {
+	ll res=0,w=0;
+	char c=gc;
+	while (!isdigit(c)) w|=c=='-',c=gc;
+	while (isdigit(c)) res=(res&lt;&lt;1)+(res&lt;&lt;3)+(c^48),c=gc;
+	if (w) res=-res;
+	return res;
+}
+bool cmp(Node a, Node b) {
+	return a.c &gt; b.c;
+}
+int main() {
+	n = read(); m = read();
+	for (int i = 1; i &lt;= (n &lt;&lt; 1); i++) f[i] = i;
+	for (int i = 1; i &lt;= m; i++) a[i].a = read(), a[i].b = read(), a[i].c = read();
+	sort(a+1, a+m+1, cmp);
+	for (int i = 1; i &lt;= m; i++) {
+		int fa = __Find(a[i].a);
+		int fb = __Find(a[i].b);
+		int ffa = __Find(a[i].a + n);
+		int ffb = __Find(a[i].b + n);
+		if(fa == fb) {
+			printf(&quot;%d\n&quot;, a[i].c);
+			return 0;
+		}
+		f[fa] = ffb;
+		f[fb] = ffa;
+	}
+	puts(&quot;0&quot;);
+	return 0;
+}
+</code></pre>
+</li>
+<li>
+<p>可持久化并查集</p>
+<p>$ \diamond$ 例题：<a href="https://www.luogu.com.cn/problem/P3402">P3402 可持久化并查集</a></p>
+<p>$ \diamond$ 代码：</p>
+<pre><code class="language-cpp">待占坑。
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<ol start="4">
+<li>
+<p>链表</p>
+<ul>
+<li>
+<p>双向链表</p>
+<p>$ \diamond$ 例题：<a href="https://www.luogu.com.cn/problem/P1160">P1160 队列安排</a></p>
+<p>$ \diamond$ 代码：</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;iostream&gt;
+using namespace std;
+const int MAXN = 1e5+5;
+struct Node {int L, R;};
+int n, m;
+Node a[MAXN];
+
+typedef long long ll;
+static char buf[100000],*p1=buf,*p2=buf;
+#define gc p1==p2&amp;&amp;(p2=(p1=buf)+fread(buf,1,100000,stdin),p1==p2)?EOF:*p1++;
+inline ll read() {
+	ll res=0,w=0;
+	char c=gc;
+	while (!isdigit(c)) w|=c=='-',c=gc;
+	while (isdigit(c)) res=(res&lt;&lt;1)+(res&lt;&lt;3)+(c^48),c=gc;
+	if (w) res=-res;
+	return res;
+}
+
+inline void write(ll x) {
+	static int sta[50],top=0;
+	if (x&lt;0) putchar('-'),x=-x;
+	do {
+		sta[top++]=x%10,x/=10;
+	}while (x);
+	while (top) putchar(sta[--top]+48);
+	putchar(' ');
+}
+
+inline void __addRight(int x, int pos)  {
+	a[x].L = pos;
+	a[a[pos].R].L = x;
+	a[x].R = a[pos].R;
+	a[pos].R = x;
+}
+inline void __addLeft(int x, int pos) {
+	a[x].R = pos;
+	a[a[pos].L].R = x;
+	a[x].L = a[pos].L;
+	a[pos].L = x;
+}
+inline void __Del(int x) {
+	if (a[x].L == -1) return;
+	a[a[x].L].R = a[x].R;
+	a[a[x].R].L = a[x].L;
+	a[x].L = -1;
+	a[x].R = -1;
+}
+inline void __Go() {
+	int x = a[0].R;
+	while (1) {
+		write(x);
+		if (a[x].R == -1) break;
+		x = a[x].R;
+	}
+}
+inline void __Init() {
+	for (int i = 1; i &lt;= n; i++) a[i].L = a[i].R = -1;
+	a[1].R = -1; a[1].L = 0; a[0].R = 1;
+}
+int main() {
+	n = read();
+	__Init();
+	for (int i = 2; i &lt;= n; i++) {
+		int x = read(), y = read();
+		if (!y) __addLeft(i, x); else __addRight(i, x);
+	}
+	m = read();
+	for (int i = 1; i &lt;= m; i++) {
+		int x = read();
+		__Del(x);
+	}
+	__Go();
+	return 0;
+}
+</code></pre>
+<p>$ \diamond$ 例题：<a href="https://www.luogu.com.cn/problem/P1081">P1081 [NOIP2012 提高组] 开车旅行</a></p>
+<p>$ \diamond$ 代码：</p>
+<pre><code class="language-cpp">待占坑。
+</code></pre>
+</li>
+<li>
+<p>块状链表</p>
+<p>$ \diamond$ 例题：<a href="https://www.luogu.com.cn/problem/P4008">P4008 [NOI2003] 文本编辑器</a></p>
+<p>$ \diamond$ 代码：</p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+char xch,xB[1&lt;&lt;15],*xS=xB,*xTT=xB;
+#define getc() (xS==xTT&amp;&amp;(xTT=(xS=xB)+fread(xB,1,1&lt;&lt;15,stdin),xS==xTT)?0:*xS++)
+inline int read()
+{
+    int x=0,f=1;char ch=getc();
+    while(ch&lt;'0'|ch&gt;'9'){if(ch=='-')f=-1;ch=getc();}
+    while(ch&gt;='0'&amp;&amp;ch&lt;='9'){x=x*10+ch-'0';ch=getc();}
+    return x*f;
+}//为了使程序跑得更快所使用的读入优化 
+const int maxn=2e3+10;
+struct node{
+    int nex,siz;//每一块数组的后继以及大小 
+    char a[maxn&lt;&lt;1];
+}b[maxn&lt;&lt;2];
+int pool[maxn&lt;&lt;2],cnt,curpos;//内存池、指针以及当前光标位置 
+inline int modi(){return pool[cnt++];}//内存分配 
+inline void dele(int x){pool[--cnt]=x;}//内存回收 
+inline void init()
+{
+    for(int i=1;i&lt;(maxn&lt;&lt;2);++i) pool[i]=i;//维护内存池，动态分配回收内存 
+    cnt=1;
+    b[0].siz=0,b[0].nex=-1;//新建一个0号节点，方便操作 
+}
+inline void add(int x,int y,int num,char c[])//在第x块后添加一个编号为y的块，长度为num 
+{
+    if(y!=-1)
+    {
+        b[y].nex=b[x].nex,b[y].siz=num;
+        memcpy(b[y].a,c,num);
+    }
+    b[x].nex=y;
+}
+inline void merge(int x,int y)//将第x块和第y块合并 
+{
+    memcpy(b[x].a+b[x].siz,b[y].a,b[y].siz);
+    b[x].siz+=b[y].siz,b[x].nex=b[y].nex;
+    dele(y);
+}
+inline void split(int cur,int pos)//将第cur块从pos处分割 
+{
+    if(cur==-1||pos==b[cur].siz) return ;
+    add(cur,modi(),b[cur].siz-pos,b[cur].a+pos);
+    b[cur].siz=pos;
+}
+inline int pos(int &amp;x)//寻找当前光标所在的块和块内位置 
+{
+    int now=0;
+    while(now!=-1&amp;&amp;x&gt;b[now].siz) x-=b[now].siz,now=b[now].nex;
+    return now;
+}
+inline void insert(int p,int num,char c[])//在p位置之后插入长度为num的字符串 
+{
+    int now=pos(p);
+    split(now,p);
+    int tot=0,nb,st=now;
+    while(tot+maxn&lt;=num)//维护块状链表平衡 
+    {
+        nb=modi();
+        add(now,nb,maxn,c+tot);
+        tot+=maxn;
+        now=nb;
+    }
+    if(num-tot)
+        nb=modi(),add(now,nb,num-tot,c+tot);
+    if(b[now].siz+b[nb].siz&lt;maxn&amp;&amp;nb!=-1)//不用对整个链表进行判断，部分maintain 
+    	merge(now,nb),nb=b[now].nex;
+    if(b[st].siz+b[b[st].nex].siz&lt;maxn&amp;&amp;b[st].nex!=-1)//同理 
+    	merge(st,b[st].nex);
+//    maintain();
+}
+inline void erase(int p,int num)//在p位置之后删除长度为num的字符串
+{
+    int now=pos(p);
+    split(now,p);
+    int nex=b[now].nex;
+    while(nex!=-1&amp;&amp;num&gt;b[nex].siz)
+        num-=b[nex].siz,nex=b[nex].nex;
+    split(nex,num);
+    nex=b[nex].nex;
+    for(int i=b[now].nex;i!=nex;i=b[now].nex)
+        b[now].nex=b[i].nex,dele(i);
+    while(b[now].siz+b[nex].siz&lt;maxn&amp;&amp;nex!=-1)//不用对整个链表进行判断，部分maintain 
+    	merge(now,nex),nex=b[now].nex;
+//    maintain();
+}
+char ans[20000000];
+inline void get(int p,int num)//输出p位置后长度为num的字符串
+{
+    int cur=pos(p);
+    int tot=b[cur].siz-p;
+    if(num&lt;tot) tot=num;
+    memcpy(ans,b[cur].a+p,tot);
+    int now=b[cur].nex;
+    while(now!=-1&amp;&amp;num&gt;=tot+b[now].siz)
+    {
+        memcpy(ans+tot,b[now].a,b[now].siz);
+        tot+=b[now].siz,now=b[now].nex;
+    }
+    if(num-tot&gt;0&amp;&amp;now!=-1)
+        memcpy(ans+tot,b[now].a,num-tot);
+    ans[num]='\0';//为了不清空，用\0结束 
+    printf(&quot;%s\n&quot;,ans);
+}
+inline char opt()
+{
+	char c=getc();
+	while(c!='M'&amp;&amp;c!='I'&amp;&amp;c!='D'&amp;&amp;c!='G'&amp;&amp;c!='P'&amp;&amp;c!='N') c=getc();
+	return c;
+}//为了不与读入优化冲突 
+int main()
+{
+//	freopen(&quot;3.in&quot;,&quot;r&quot;,stdin);
+//	freopen(&quot;3.ans&quot;,&quot;w&quot;,stdout);
+    init();
+    int m;
+
+    scanf(&quot;%d&quot;,&amp;m);
+    for(int i=1;i&lt;=m;++i)
+    {
+        switch(opt())
+        {
+            case 'M':curpos=read();break;
+            case 'I':
+                int tmp;
+                tmp=read();
+                for(int i=0;i&lt;tmp;++i)
+                {
+                    ans[i]=getc();
+                    if(ans[i]&lt;32||ans[i]&gt;126) --i;
+                }
+                insert(curpos,tmp,ans);
+                    break;
+            case 'D':
+                tmp=read();
+                erase(curpos,tmp);
+                break;
+            case 'G':
+                tmp=read();
+                get(curpos,tmp);
+                break;
+            case 'P':--curpos;break;
+            case 'N':++curpos;break;
+        }
+    }
+    return 0;
+}
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<ol start="5">
+<li>
+<p>树状数组</p>
+<ul>
+<li>
+<p>求逆序对</p>
+<p>$ \diamond$ 例题：<a href="https://www.luogu.com.cn/problem/P1908">P1908 逆序对</a></p>
+<p>$ \diamond$ 代码：</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+#include &lt;sys/mman.h&gt;
+#include &lt;sys/stat.h&gt;
+#define For(i, x, y) for (register int i = x; i &lt;= y; ++i)
+#define For_d(i, x, y) for (register int i = x; i &gt;= y; --i)
+using namespace std;
+const int MAXN = 5e5+5;
+int a[MAXN], b[MAXN], c[MAXN], n;
+long long s;
+char* p;
+
+typedef long long ll;
+
+inline void read(int&amp; x) {
+    x = 0;
+    while (*p &lt; 48) p++;
+    while (*p &gt;= 48) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + *p - 48, p++;
+}
+
+inline void write(ll x) {
+    char s[20]; int c=0;
+    do {s[c++]=x%10; x/=10; } while(x);
+    For_d(i, c-1, 0) putchar_unlocked(s[i] + 48);
+}
+
+inline void init() {
+    struct stat in;
+    fstat(0, &amp;in);
+    p = (char*)mmap(0, in.st_size, 1, 2, 0, 0);
+}
+inline void mdf(int x){while(x&lt;=n) ++c[x],x+=x&amp;-x;}
+inline void qry(int x){while(x) s+=1ll*c[x],x^=x&amp;-x;}
+inline int cmp(int x, int y) {return b[x] &gt;= b[y];}
+int main() {
+    init();
+	read(n);
+	For(i, 1, n) read(b[i]), a[i] = i;
+	stable_sort(a+1, a+n+1, cmp);
+	For(i, 1, n) mdf(a[i]),qry(a[i]-1);
+	write(s);
+	return 0;
+}
+</code></pre>
+</li>
+<li>
+<p>二维树状数组</p>
+<p>$ \diamond$ 例题：<a href="https://www.luogu.com.cn/problem/P4514">P4514 上帝造题的七分钟</a></p>
+<p>$ \diamond$ 代码：</p>
+<pre><code class="language-cpp">待占坑。
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<ol start="6">
+<li>
+<p>线段树</p>
+<ul>
+<li>
+<p>模板线段树</p>
+<p>$ \diamond$ 例题：<a href="https://www.luogu.com.cn/problem/P3372">P3372 【模板】线段树 1</a></p>
+<p>$ \diamond$ 代码：</p>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+using namespace std;
+#define For(i, x, y) for (register int i = x; i &lt;= y; ++i)
+typedef long long ll;
+const int MAXN = 1e5;
+struct Node {
+    int l, r;
+    ll sum, add;
+};
+Node tr[4*MAXN+5];
+int n, m, op, L, R, x;
+
+static char buf[100000],*p1=buf,*p2=buf;
+#define gc p1==p2&amp;&amp;(p2=(p1=buf)+fread(buf,1,100000,stdin),p1==p2)?EOF:*p1++;
+inline ll read() {
+    ll res=0,w=0;
+    char c=gc;
+    while (!isdigit(c)) w|=c=='-',c=gc;
+    while (isdigit(c)) res=(res&lt;&lt;1)+(res&lt;&lt;3)+(c^48),c=gc;
+    if (w) res=-res;
+    return res;
+}
+inline void write(ll x) {
+    static int sta[50],top=0;
+    if (x&lt;0) putchar('-'),x=-x;
+    do {
+        sta[top++]=x%10,x/=10;
+    }while (x);
+    while (top) putchar(sta[--top]+48);
+    putchar('\n');
+}
+
+inline void __Build(int rt, int l, int r) {
+    tr[rt].l = l; tr[rt].r = r;
+    if (l == r) {
+        ll x = read();
+        tr[rt].sum = x;
+        return;
+    }
+    int mid = (l+r)&gt;&gt;1;
+    __Build(rt&lt;&lt;1, l, mid);
+    __Build(rt&lt;&lt;1|1, mid+1, r);
+    tr[rt].sum = tr[rt&lt;&lt;1].sum + tr[rt&lt;&lt;1|1].sum;
+}
+inline void __Update(int rt, int L, int R, int x) {
+    int l = tr[rt].l, r = tr[rt].r;
+    if (L &lt;= l &amp;&amp; r &lt;= R) {
+        tr[rt].sum += x*(r-l+1);
+        tr[rt].add += x;
+        return;
+    }
+    int len = (r-l+1);
+    if (tr[rt].add) {
+        tr[rt&lt;&lt;1].add += tr[rt].add;
+        tr[rt&lt;&lt;1|1].add += tr[rt].add;
+        tr[rt&lt;&lt;1].sum += tr[rt].add*(len-(len&gt;&gt;1));
+        tr[rt&lt;&lt;1|1].sum += tr[rt].add*(len&gt;&gt;1);
+        tr[rt].add = 0;
+    }
+    int mid = (l+r)&gt;&gt;1;
+    if (L &lt;= mid) __Update(rt&lt;&lt;1, L, R, x);
+    if (mid &lt; R) __Update(rt&lt;&lt;1|1, L, R, x);
+    tr[rt].sum = tr[rt&lt;&lt;1].sum + tr[rt&lt;&lt;1|1].sum;
+}
+inline ll __Query(int rt, int L, int R) {
+    int l =  tr[rt].l, r = tr[rt].r;
+    if (L &lt;= l &amp;&amp; r &lt;= R) return tr[rt].sum;
+    int len = (r-l+1);
+    if (tr[rt].add) {
+        tr[rt&lt;&lt;1].add += tr[rt].add;
+        tr[rt&lt;&lt;1|1].add += tr[rt].add;
+        tr[rt&lt;&lt;1].sum += tr[rt].add*(len-(len&gt;&gt;1));
+        tr[rt&lt;&lt;1|1].sum += tr[rt].add*(len&gt;&gt;1);
+        tr[rt].add = 0;
+    }
+    ll S = 0;
+    int mid = (l+r) &gt;&gt; 1;
+    if (L &lt;= mid) S += __Query(rt&lt;&lt;1, L, R);
+    if (mid &lt; R) S += __Query(rt&lt;&lt;1|1, L, R);
+    return S;
+}
+int main() {
+    n = read(), m = read();
+    __Build(1, 1, n);
+    For(i, 1, m) {
+        op = read();
+        if (op == 1) {L = read(); R = read(); x = read(); __Update(1, L, R, x);}
+        else {L = read(); R = read(); write(__Query(1, L, R));}
+    }
+    return 0;
+}
+</code></pre>
+<p>$ \diamond$ 例题：<a href="https://www.luogu.com.cn/problem/P3373">P3373 【模板】线段树 2</a></p>
+<p>$ \diamond$ 代码：</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;iostream&gt;
+using namespace std;
+#define For(i, x, y) for (register int i = x; i &lt;= y; ++i)
+typedef long long ll;
+const int MAXN = 1e5;
+struct Node {
+    int l, r;
+    ll mul, add, data;
+};
+Node tr[MAXN*4 + 5];
+ll a[MAXN], n, m, P;
+
+static char buf[100000],*p1=buf,*p2=buf;
+#define gc p1==p2&amp;&amp;(p2=(p1=buf)+fread(buf,1,100000,stdin),p1==p2)?EOF:*p1++;
+inline ll read() {
+    ll res=0,w=0;
+    char c=gc;
+    while (!isdigit(c)) w|=c=='-',c=gc;
+    while (isdigit(c)) res=(res&lt;&lt;1)+(res&lt;&lt;3)+(c^48),c=gc;
+    if (w) res=-res;
+    return res;
+}
+inline void write(ll x) {
+    static int sta[50],top=0;
+    if (x&lt;0) putchar('-'),x=-x;
+    do {
+        sta[top++]=x%10,x/=10;
+    }while (x);
+    while (top) putchar(sta[--top]+48);
+    putchar('\n');
+}
+
+inline void Up(int rt) {tr[rt].data = (tr[rt&lt;&lt;1].data + tr[rt&lt;&lt;1|1].data) % P;}
+inline void Build(int rt, int l, int r) {
+    tr[rt].l = l; tr[rt].r = r; tr[rt].mul = 1; tr[rt].add = 0;
+    if (l == r) {tr[rt].data = a[l]; return;}
+    int mid = (l+r)&gt;&gt;1;
+    Build(rt &lt;&lt; 1, l, mid);
+    Build(rt &lt;&lt; 1 | 1, mid+1, r);
+    Up(rt);
+}
+inline void pushdown(int rt) {
+    int L = (rt &lt;&lt; 1), R = (rt &lt;&lt; 1 | 1);
+    tr[L].mul *= tr[rt].mul; tr[L].mul %= P;
+    tr[L].add *= tr[rt].mul; tr[L].add %= P;
+    tr[L].data *= tr[rt].mul; tr[L].data %= P;
+    tr[R].mul *= tr[rt].mul; tr[R].mul %= P;
+    tr[R].add *= tr[rt].mul; tr[R].add %= P;
+    tr[R].data *= tr[rt].mul; tr[R].data %= P;
+    tr[rt].mul = 1;
+    tr[L].add += tr[rt].add; tr[L].add %= P;
+    tr[L].data += tr[rt].add * (tr[L].r-tr[L].l+1); tr[L].data %= P;
+    tr[R].add += tr[rt].add; tr[R].add %= P;
+    tr[R].data += tr[rt].add * (tr[R].r-tr[R].l+1); tr[R].data %= P;
+    tr[rt].add = 0;
+}
+inline void change_chen(ll l, ll r, ll k, ll rt) {
+    int L = tr[rt].l, R = tr[rt].r;
+    if (l &lt;= L &amp;&amp; R &lt;= r) {
+        tr[rt].data *= k;
+        tr[rt].mul *= k;
+        tr[rt].add *= k;
+        return;
+    }
+    pushdown(rt);
+    int mid = (L+R) &gt;&gt; 1;
+    if (l &lt;= mid) change_chen(l, r, k, rt&lt;&lt;1);
+    if (mid &lt; r) change_chen(l, r, k, rt&lt;&lt;1|1);
+    Up(rt);
+}
+inline void change_jia(ll l, ll r, ll k, ll rt) {
+    int L = tr[rt].l, R = tr[rt].r;
+    if (l &lt;= L &amp;&amp; R &lt;= r) {
+        tr[rt].add += k;
+        tr[rt].data += k*(R-L+1);
+        return;
+    }
+    pushdown(rt);
+    int mid = (L+R) &gt;&gt; 1;
+    if (l &lt;= mid) change_jia(l, r, k, rt&lt;&lt;1);
+    if (mid &lt; r) change_jia(l, r, k, rt&lt;&lt;1|1);
+    Up(rt);
+}
+inline ll Query(int l, int r, int rt) {
+    int L = tr[rt].l, R = tr[rt].r;
+    if (l &lt;= L &amp;&amp; R &lt;= r) return tr[rt].data;
+    pushdown(rt);
+    ll S = 0, mid = (L+R) &gt;&gt; 1;
+    if (l &lt;= mid) S += Query(l, r, rt &lt;&lt; 1); S %= P;
+    if (mid &lt; r) S += Query(l, r, rt &lt;&lt; 1 | 1); S %= P;
+    return S;
+}
+int main() {
+    n = read(); m = read(); P = read();
+    For(i, 1, n) a[i] = read();
+    Build(1, 1, n);
+    For(i, 1, m) {
+        int op = read();
+        if (op == 1) {
+            ll x = read(), y = read(), k = read();
+            change_chen(x, y, k, 1);
+        } else if (op == 2) {
+            ll x = read(), y = read(), k = read();
+            change_jia(x, y, k, 1);
+        } else if (op == 3) {
+            ll x = read(), y = read();
+            write(Query(x, y, 1));
+        }
+    }
+    return 0;
+}
+</code></pre>
+<p>$ \diamond$ 例题：<a href="https://www.luogu.com.cn/problem/P6242">P6242 【模板】线段树 3</a></p>
+<p>$ \diamond$ 代码：</p>
+<pre><code class="language-cpp">待占坑。
+</code></pre>
+</li>
+<li>
+<p>权值线段树</p>
+<p>$ \diamond$ 例题：暂无</p>
+<p>$ \diamond$ 代码：</p>
+<pre><code class="language-cpp">待占坑。
+</code></pre>
+</li>
+<li>
+<p>动态开点线段树</p>
+<p>$ \diamond$ 例题：暂无</p>
+<p>$ \diamond$ 代码：</p>
+<pre><code class="language-cpp">待占坑。
+</code></pre>
+</li>
+<li>
+<p>zkw 线段树</p>
+<p>$ \diamond$ 例题：暂无</p>
+<p>$ \diamond$ 代码：</p>
+<pre><code class="language-cpp">待占坑。
+</code></pre>
+</li>
+<li>
+<p>二维线段树</p>
+<p>$ \diamond$ 例题：暂无</p>
+<p>$ \diamond$ 代码：</p>
+<pre><code class="language-cpp">待占坑。
+</code></pre>
+</li>
+<li>
+<p>线段树合并</p>
+<p>$ \diamond$ 例题：暂无</p>
+<p>$ \diamond$ 代码：</p>
+<pre><code class="language-cpp">待占坑。
+</code></pre>
+</li>
+<li>
+<p>可持久化线段树（主席树）</p>
+<ul>
+<li>
+<p>区间第 k 小</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⋄</mo></mrow><annotation encoding="application/x-tex">\diamond</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.44445em;vertical-align:0em;"></span><span class="mord">⋄</span></span></span></span> 例题：暂无</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⋄</mo></mrow><annotation encoding="application/x-tex">\diamond</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.44445em;vertical-align:0em;"></span><span class="mord">⋄</span></span></span></span> 代码：</p>
+<pre><code class="language-cpp">待占坑。
+</code></pre>
+</li>
+<li>
+<p>带修主席树</p>
+<p>$ \diamond$ 例题：暂无</p>
+<p>$ \diamond$ 代码：</p>
+<pre><code class="language-cpp">待占坑。
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<ol start="7">
+<li>平衡树</li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
         <id>https://zch-star.github.io/post/hello-gridea/</id>
