@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    Gridea | zch-star 的博客
+    题解 | zch-star 的博客
 </title>
 <link rel="shortcut icon" href="https://zch-star.github.io/favicon.ico?v=1614141759740">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -98,39 +98,62 @@
                     
     <div class="i-card">
         <b>标签：#
-        Gridea</b>
+        题解</b>
     </div>
     
         
             <article class="post i-card">
                 <h2 class="post-title">
-                    <a href="https://zch-star.github.io/post/hello-gridea/">
-                        Hello Gridea
+                    <a href="https://zch-star.github.io/post/ti-jie-cf88a-chord/">
+                        题解 CF88A 【Chord】
                     </a>
                 </h2>
                 <div class="post-info">
-                    <time class="post-time">2018-12-12</time>
+                    <time class="post-time">2021-02-24</time>
                     
-                        <a href="https://zch-star.github.io/tag/RAnBUFIK0/" class="post-tag i-tag
-                            i-tag-">
-            #Gridea
+                        <a href="https://zch-star.github.io/tag/qPqRY71S0/" class="post-tag i-tag
+                            i-tag-info">
+            #题解
         </a>
                         
                 </div>
                 <div class="post-article">
                     
-                        <a href="https://zch-star.github.io/post/hello-gridea/" class="post-feature-image" style="background-image:url(https://zch-star.github.io/post-images/hello-gridea.png) ">
-                        </a>
-                        
                             <div class="post-content">
                                 
-                                    <div class="post-content-abstract">
-                                        <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+                                        <div class="post-content-content">
+                                            原题链接：洛谷 CF88A 【Chord】
+SolSolSol
+这道题我被坑了好几次，题目中的 ∣XY∣|XY|∣XY∣ 不是指它们乘积的绝对值，而是 它们的差的绝对值\large\color{red}\texttt{它们的差的绝对值}它们的差的绝对值！
+Then\texttt{Then}Then，我们就可以愉快的打暴力了。
+还有一个小注意点，每次都需要排序一下，当它们为 strange\text{strange}strange 时，要把第一个音符提高八度，也就是 +12+12+12，然后再接着往下判断。
+CodeCodeCode
+#include &amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+string gett[13] = {&amp;quot;C&amp;quot;, &amp;quot;C#&amp;quot;, &amp;quot;D&amp;quot;, &amp;quot;D#&amp;quot;, &amp;quot;E&amp;quot;, &amp;quot;F&amp;quot;, &amp;quot;F#&amp;quot;, &amp;quot;G&amp;quot;, &amp;quot;G#&amp;quot;, &amp;quot;A&amp;quot;, &amp;quot;B&amp;quot;, &amp;quot;H&amp;quot;}; //思路跟楼上差不多，根据字符串排序
+string c1, c2, c3;
+int a[4];
+int main() {
+	cin &amp;gt;&amp;gt; c1 &amp;gt;&amp;gt; c2 &amp;gt;&amp;gt; c3;
+	for (int i = 0; i &amp;lt; 13; ++i) { //转为数字
+		if (c1 == gett[i]) a[1] = i;
+		if (c2 == gett[i]) a[2] = i;
+		if (c3 == gett[i]) a[3] = i;
+	}
+	for (int i = 1; i &amp;lt;= 3; ++i) {
+		sort(a + 1, a + 4); //排序
+		if ((abs(a[1] - a[2]) == 4 &amp;amp;&amp;amp; abs(a[2] - a[3]) == 3)) {cout &amp;lt;&amp;lt; &amp;quot;major&amp;quot; &amp;lt;&amp;lt; endl; return 0;} //判断为 major
+        else if ((abs(a[1] - a[2]) == 3 &amp;amp;&amp;amp; abs(a[2] - a[3]) == 4)) {cout &amp;lt;&amp;lt; &amp;quot;minor&amp;quot; &amp;lt;&amp;lt; endl; return 0;} //判断为 minor
+		a[1] += 12; //第一个音符+=12
+	}
+	cout &amp;lt;&amp;lt; &amp;quot;strange&amp;quot; &amp;lt;&amp;lt; endl; //strange
+	return 0;
+}
 
-                                    </div>
-                                    
-                                            <a class="btn btn-text" href="https://zch-star.github.io/post/hello-gridea/">Read More ~</a>
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://zch-star.github.io/post/ti-jie-cf88a-chord/">Read More ~</a>
                             </div>
                 </div>
             </article>
