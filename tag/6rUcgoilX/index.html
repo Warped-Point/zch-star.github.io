@@ -1,908 +1,1123 @@
-<!DOCTYPE html>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-<link rel="stylesheet" href="https://zch-star.github.io/media/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/css/live2d.css">
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    模板 | zch-star 的博客
+</title>
+<link rel="shortcut icon" href="https://zch-star.github.io/favicon.ico?v=1614145061290">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://zch-star.github.io/styles/main.css">
-<link rel="stylesheet" href="https://zch-star.github.io/media/css/font-awesome.css">
-<title>zch-star 的博客</title>
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://zch-star.github.io/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
-<body>
-    <!-- 响应式布局，针对PC端内容显示 -->
-    <div id="content">
-        <div class="nav-large">
-            <div class="row">
-                
-                    <div class="side"><head>
-    <link rel="stylesheet" href="https://zch-star.github.io/media/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://zch-star.github.io/styles/main.css">
-    
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/styles/dracula.min.css">
-    
-    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/js/clipboard.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/css/live2d.css">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
-    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="stylesheet">
-    <!-- 数学公式 -->
-    
-    
 </head>
-<style>
-    body{
-    cursor: url("https://zch-star.github.io/media/images/mouse_cursor.png"),auto
-    }
-    </style>
 
 <body>
-    
-    <script>
-        let menupos = 'left'
-    </script>
-    
-    
-    <script>
-        let shareChoice = false
-    </script>
-    
-    
-    <script>
-        let donateChoice = false
-    </script>
-    
-    
-    <script>
-        let searchChoice = false
-    </script>
-    
-    <script>let postsnum = 0;</script>
-    <div id="side-posttitle" style="display: none;">
-        
-    
-    题解 CF88A 【Chord】
-    <script>postsnum += 1</script>
-    
-    
-    
-    OI 知识树
-    <script>postsnum += 1</script>
-    
-    
-    
-    
-    
-    Hello Gridea
-    <script>postsnum += 1</script>
-    
-    
-    </div>
-    <div class="pjaxloading" onclick="pjaxloadingClose()">
-        <div class="loadingbackground"></div>
-        <div id="loading">
-            <div class="loading">
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://zch-star.github.io">
+                <img class="avatar" src="https://zch-star.github.io/images/avatar.png?v=1614145061290" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    zch-star 的博客
+                </h1>
             </div>
         </div>
-    </div>
-    
-    
-</body>
-<script>
-    function showqq() {
-        var qq = document.getElementById("qq").innerHTML;
-        if (qq != '')
-            window.location.href = "tencent://message/?uin=" + qq + "&Site=&Menu=yes";
-        else
-            alert("博主暂未设置QQ联系方式");
-    }
-
-    //音乐播放器的显示
-    function showAaplayer() {
-        var aplayer = $(".aplayer-body");
-        if (aplayer.css("display") == 'block')
-            aplayer.fadeOut(200)
-        else
-            aplayer.fadeIn(200)
-    }
-</script>
-<script>
-    function getHotnum() {
-        //文章阅读热度（重构，利用leancloud原生api）
-        var pl = window.location.pathname;
-        if (pl.search("post") == -1)
-            return false;
-        if (pl[pl.length - 1] != '/')
-            pl += '/'
-        var ptitle = $("#ptitle").html();
-        var rootaddr = $("#rootaddr").html();
-        pl = pl.replace(rootaddr, "");
-        var appid = '';
-        var appkey = '';
-        console.log(appid, appkey)
-        if (AV == undefined)
-            AV.init({
-                appId: appid,
-                appKey: appkey
-            });
-        const query = new AV.Query('Counter');
-        query.equalTo('url', pl);
-        var time = 'Loading...';
-        query.find().then(function (results) {
-            console.log(results)
-            if (results.length == 0) {
-                console.log("0")
-                var NewCounter = AV.Object.extend('Counter');
-                var nc = new NewCounter();
-                nc.save({
-                    time: 1,
-                    title: ptitle,
-                    url: pl,
-                    xid: pl,
-                }).then(function (object) {
-                    $(".hotnum").eq(0).html(1);
-                    $(".hotnum").eq(1).html(1);
-                });
-            } else {
-                id = results[0].id;
-                var todo = AV.Object.createWithoutData('Counter', id);
-                time = results[0].attributes.time + 1;
-                todo.set("time", time);
-                todo.save();
-                console.log(todo);
-                $(".hotnum").eq(0).html(time);
-                $(".hotnum").eq(1).html(time);
-            }
-
-        }, function (error) {
-            console.log(error)
-        });
-    }
-</script>
-    <script src="https://zch-star.github.io/media/share/dist/Share.js"></script>
-    <!-- 页面pjax测试 -->
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery.pjax/2.0.1/jquery.pjax.js"></script>
-    <!--确保jQuery已经在此之前加载-->
-    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-    <script src="https://zch-star.github.io/media/js/all-pjax.js"></script>
-    <script>
-        //loading加载关闭
-        function pjaxloadingClose() {
-            var pjaxloading = $(".pjaxloading");
-            pjaxloading.hide();
-        }
-
-
-
-        function imglazyloadinit() {
-            var img = $("img");
-            for (var i = 0; i < img.length; i++) {
-                if (img.eq(i).attr("class") == undefined) {
-                    img.eq(i).attr("class", "lazyload");
-                    var imgsrc = img.eq(i).attr("src");
-                    img.eq(i).attr("data-original", imgsrc);
-                    img.eq(i).attr("src", "");
-                    img.eq(i).hide();
-                }
-            }
-        }
-
-        function sleep(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
-        }
-
-        async function codebtncolorinit(e) {
-            await sleep(2000);
-            e.trigger.innerHTML = "复制代码"
-            e.trigger.style.background = "cornflowerblue"
-        }
-
-        function codeinit() {
-            //寻找所有code标签，加复制按钮鸭！(行内代码除外)
-            var codes = document.getElementsByTagName('code');
-            if (codes.length) {
-                for (var i = 0; i < codes.length; i++) {
-                    //高度/行高=文本行数
-                    // var rowNum=Math.round(codes[i].height()/parseFloat(codes[i].css('line-height')));
-                    // console.log("当前有"+rowNum+"行");
-                    var code_id = "code_id_" + i;
-                    codes[i].setAttribute("id", code_id);
-                    var ci = "#" + code_id;
-                    var codedot = $(ci);
-                    var rowNum = Math.round(codedot.height() / parseFloat(codedot.css('line-height')));
-                    if (rowNum <= 1) continue;
-                    var btn = document.createElement("button");
-                    btn.setAttribute("class", "copybt");
-                    btn.setAttribute("data-clipboard-target", "#" + code_id);
-                    btn.innerHTML = '复制代码';
-                    codes[i].parentNode.insertBefore(btn, codes[i]);
-                }
-            };
-            var cop = new ClipboardJS('.copybt');
-            cop.on('success', function (e) {
-                e.trigger.innerHTML = "复制成功~"
-                e.trigger.style.background = "#894e54"
-                codebtncolorinit(e)
-                e.clearSelection();
-            });
-            cop.on('error', function (e) {
-                alert("矮油，复制失败了...手动复制吧勇士！");
-                e.clearSelection();
-            });
-        }
-
-        function lazyload() {
-            var oLazyload = $("img.lazyload"),
-                fLazyload = function (hLazyload) {
-                    var nLazyload = $(window).height() + $(document).scrollTop();
-                    oLazyload.each(function () {
-                        $(this).offset().top < nLazyload && ($(this).trigger("appear"), oLazyload =
-                            oLazyload.not(this));
-                    }), 0 == oLazyload.length && $(window).unbind("scroll", fLazyload);
-                };
-            oLazyload.each(function () {
-                $(this).one("appear", function () {
-                    $(this).attr("src", $(this).attr("data-original"));
-                    $(this).fadeIn(500);
-                });
-            }), $(window).bind("scroll", fLazyload), fLazyload();
-        }
-
-        let talksall = [];
-        let talks = [];
-        let talkindex = 0;
-        get();
-        function get() {
-            var t = JSON.parse('');
-            talkindex = t.length - 1;
-            for (var i = 0; i <= t.length - 1; i++) {
-                var d = {};
-                d["time"] = t[i].time;
-                d["author"] = t[i].author;
-                d["text"] = t[i].text;
-                d["img"] = t[i].img;
-                talksall.push(d);
-            }
-        }
-
-        function add() {
-            for (var i = talkindex; i >= 0 && i > talkindex - 3; i--) {
-                talks.push(talksall[i]);
-            }
-            talkindex = (talkindex - 3) >= 0 ? (talkindex - 3) : -1;
-            if (talkindex < 0) $("#getmorebt").hide();
-            show();
-            refreshImg("talkimg");
-        }
-
-        function show() {
-            var talkT = document.getElementById("talkContainer");
-            talkT.innerHTML = "";
-            for (var i = 0; i < talks.length; i++) {
-                if (talks[i].img != '') {
-                    talkT.innerHTML += '\
-            <div class="talk" v-for="t in talks"> \
-                <img src="' + talks[i].img + '" class="talkimg"> \
-                <div class="ainfo">\
-                    <div class="ainfo-intro">\
-                        <img class="intro1" src="https://zch-star.github.io/images/avatar.png?v=1614144989690">\
-                        <div class="author">' + talks[i].author + '</div>·\
-                        <div class="time">' + talks[i].time + '</div>\
-                    </div>\
-                </div>\
-                <div class="talkcontent">' + talks[i].text + '\
-                </div\>\
-            ';
-                } else {
-                    talkT.innerHTML += '\
-            <div class="talk" v-for="t in talks"> \
-                <div class="ainfo">\
-                    <div class="ainfo-intro">\
-                        <img class="intro1" src="https://zch-star.github.io/images/avatar.png?v=1614144989690">\
-                        <div class="author">' + talks[i].author + '</div>·\
-                        <div class="time">' + talks[i].time + '</div>\
-                    </div>\
-                </div>\
-                <div class="talkcontent">' + talks[i].text + '\
-                </div\>\
-            ';
-                }
-            }
-        }
-
-        function refreshImg(imgclass) {
-            // 获取弹窗
-            var modal = document.getElementById('myModal');
-
-            // 获取图片插入到弹窗 - 使用 "alt" 属性作为文本部分的内容
-            var img = document.getElementsByClassName(imgclass);
-            var modalImg = document.getElementById("img01");
-            var captionText = document.getElementById("caption");
-            for (var i in img) {
-                img[i].onclick = function () {
-                    modal.style.display = "block";
-                    modalImg.src = this.src;
-                }
-            }
-
-            // 图片关闭
-            var modalImg = document.getElementById('img01');
-            // 鼠标点击模型外区域关闭登录框
-            window.onclick = function (event) {
-                console.log(event.target);
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-                if (menupos == 'left')
-                    return true;
-                if (event.target == social) {
-                    social.style.display = "none";
-                }
-            }
-        }
-
-        function shareInit() {
-            var title = document.getElementById("texttitle").getElementsByTagName("h2");
-            if (menupos == 'top') {
-                var avatarSrc = $(".menutopavatar").attr("src");
-                var dp = document.getElementsByClassName("navbar-brand")[1].innerHTML;
-            }
-            else {
-                var avatarSrc = $(".avatar").attr("src");
-                var dp = document.getElementsByClassName("describtion")[0].innerHTML;
-            }
-            var share = new Share('.share', {
-                title: title[0].innerHTML,
-                initialized: true,
-                //默认获取网站描述
-                description: dp,
-                //网站图片默认获取的是设置的用户头像
-                image: avatarSrc,
-                //激活的分享网站
-                sites: ["weibo", "qq", "wechat", "douban", "qzone", "facebook", "twitter", "google"],
-                //微信分享PC端会生成二维码分享,移动端如果可以唤起微信最好
-                wechatQrcodeTitle: "微信扫一扫：分享", // 微信二维码提示文字
-                wechatQrcodeHelper: '<p>微信里扫一下二维码</p><p>便可将本文分享至朋友圈。</p>',
-                //关闭的网站分享
-                disabled: ['google', 'linkedin'],
-                wechatQrcodePosition: 'bottom'
-            });
-            //点击分享按钮展现出分享icons
-            var sharebtnTag = false;
-            $(".sharebtn").click(function () {
-                if (!sharebtnTag) {
-                    $(".share").show();
-                    sharebtnTag = true;
-                }
-                else {
-                    $(".share").hide();
-                    sharebtnTag = false;
-                }
-            })
-        }
-
-        function donateInit() {
-            var donatebtnTag = false;
-            $(".donateImg").click(function () {
-                if (!donatebtnTag) {
-                    $(".donate").show();
-                    donatebtnTag = true;
-                }
-                else {
-                    $(".donate").hide();
-                    donatebtnTag = false;
-                }
-            })
-        }
-
-
-        let talkinit = false;
-        $(document).pjax('a[data-pjax]', '#main', {
-            fragment: '#main',
-            timeout: 8000
-        }).on('pjax:complete', function () {
-            //hljs.initHighlightingOnLoad();
-            document.querySelectorAll('pre code').forEach((block) => {
-                hljs.highlightBlock(block);
-            });
-            //文章热度
-            getHotnum();
-            //文章索引
-            toginit();
-            //清空搜索栏
-            if (searchChoice) {
-                searchInit();
-                searchInput.value = "";
-            }
-            var pl = window.location.pathname;
-            //说说更新
-            if (pl.search("talk") != -1 && !talkinit) {
-                add();
-                talkinit = true;
-            }
-            else if (pl.search("talk") != -1) {
-                show();
-                refreshImg("talkimg");
-            }
-            //分享按钮更新
-            if (pl.search("post") != -1) {
-                if (shareChoice)
-                    shareInit();
-                if (donateChoice)
-                    donateInit();
-                imglazyloadinit();
-                lazyload();
-                refreshImg("lazyload");
-                codeinit();
-            }
-            if (btstate == true)
-                dropdown();
-        }).on('pjax:start', function () {
-            $(".pjaxloading").fadeIn(50);
-        }).on('pjax:end', function () {
-            $(".pjaxloading").fadeOut(50);
-        });
-    </script>
-
-    <script>
-        /**
-         * https://github.com/tangkaichuan/gridea-search
-         */
-        (function () {
-            var CACHES = checkCache()
-            if (!CACHES) {
-                var NOW = Date.now()
-                var API_CONTENT = '../api-content/index.html' + '?_=' + NOW
-                preload(API_CONTENT);
-                getContents(show_getContentresult);
-            }
-
-            function show_getContentresult(data) {
-                console.log("获取成功");
-                var postslen = data["posts"].length;
-                localStorage.setItem('postsnum', postslen);
-                var poststitlelen = 0;
-                var pt = document.getElementById("side-posttitle").innerHTML;
-                pt = pt.replace(/\s+/g, '').replace(/<script>.*?<\/script>/gi, "");
-                localStorage.setItem('poststitlelen', pt.length);
-            }
-
-
-
-            // preload
-            function preload(url) {
-                var preloadLink = document.createElement('link')
-                preloadLink.href = url
-                preloadLink.rel = 'preload'
-                preloadLink.as = 'fetch'
-                preloadLink.crossOrigin = 'anonymous'
-                document.head.appendChild(preloadLink)
-            }
-
-            // 异步 GET 请求
-            function get(obj) {
-                var xhr = new XMLHttpRequest()
-                xhr.open('get', obj.url, true)
-                xhr.send(null)
-                xhr.onreadystatechange = function () {
-                    // 异步请求：响应状态为4，数据加载完毕
-                    if (xhr.readyState === 4) {
-                        if (xhr.status === 200) {
-                            obj.success(xhr.responseText)
-                        } else {
-                            obj.error(xhr.status)
-                        }
-                    }
-                }
-            }
-
-
-            // 检查缓存是否最新
-            function checkCache() {
-                var caches_postsnum = localStorage.getItem("postsnum");
-                var pt = document.getElementById("side-posttitle").innerHTML;
-                pt = pt.replace(/\s+/g, '').replace(/<script>.*?<\/script>/gi, "")
-                var ptlen = pt.length;
-                var ptlen_storage = localStorage.getItem("poststitlelen");
-                console.log(parseInt(postsnum));
-                if (caches_postsnum != postsnum || ptlen != ptlen_storage) {
-                    console.log("更新缓存");
-                    return false
-                }
-                return true;
-            }
-
-            // 获取博客全文 api
-            function getContents(callback) {
-                if (CACHES) {
-                    callback(CACHES.contents)
-                } else {
-                    get({
-                        url: API_CONTENT,
-                        success: function (data) {
-                            callback(JSON.parse(data));
-                            localStorage.setItem('ContentsCache', data);
-                        }
-                    })
-                }
-            }
-        })()
-
-        //-------------------------------------------------搜索
-        // 获取搜索框、搜索按钮、清空搜索、结果输出对应的元素
-        if (searchChoice) {
-            var searchInput = document.querySelector('.search-input');
-            var searchResults = document.querySelector('.search-results');
-        }
-        // 申明保存文章的标题、链接、内容的数组变量
-        var searchValue = '',
-            arrItems = [],
-            arrLinks = [],
-            arrTitles = [],
-            arrContents = [],
-            arrResults = [],
-            indexItem = [],
-            itemLength = 0;
-        var tmpDiv = document.createElement('div');
-        tmpDiv.className = 'result-item';
-
-
-        function getStorageContent() {
-            var data = localStorage.getItem('ContentsCache');
-            data = JSON.parse(data);
-            posts = data["posts"];
-            for (var i = 0; i < posts.length; i++) {
-                arrLinks[i] = posts[i].link;
-                arrTitles[i] = posts[i].title;
-                arrContents[i] = posts[i].content;
-                itemLength++;
-            }
-        }
-        getStorageContent();
-        // 输入框内容变化后就开始匹配，可以不用点按钮
-        // 经测试，onkeydown, onchange 等方法效果不太理想，
-        // 存在输入延迟等问题，最后发现触发 input 事件最理想，
-        // 并且可以处理中文输入法拼写的变化
-        searchInput.oninput = function () {
-            setTimeout(searchConfirm, 0);
-        }
-        searchInput.onfocus = function () {
-            searchResults.style.display = 'block';
-        }
-
-        function searchConfirm() {
-            if (searchInput.value == '') {
-                searchResults.style.display = 'none';
-            } else if (searchInput.value.search(/^\s+$/) >= 0) {
-                // 检测输入值全是空白的情况
-                searchInit();
-                var itemDiv = tmpDiv.cloneNode(true);
-                itemDiv.innerText = '请输入有效内容...';
-                searchResults.appendChild(itemDiv);
-            } else {
-                // 合法输入值的情况
-                searchInit();
-                searchValue = searchInput.value;
-                // 在标题、内容中查找
-                searchMatching(arrTitles, arrContents, searchValue);
-            }
-        }
-
-        // 每次搜索完成后的初始化
-        function searchInit() {
-            arrResults = [];
-            indexItem = [];
-            searchResults.innerHTML = '';
-            searchResults.style.display = 'block';
-        }
-
-        function searchMatching(arr1, arr2, input) {
-            // 忽略输入大小写
-            input = new RegExp(input, 'i');
-            var step = 10;
-            // 在所有文章标题、内容中匹配查询值
-            for (i = 0; i < itemLength; i++) {
-                var indexContent = arr2[i].search(input);
-                //标题匹配
-                if (arr1[i].search(input) != -1) {
-                    indexItem.push(i); // 保存匹配值的索引
-                    if (indexContent != -1) {
-                        startindex = (indexContent - step) >= 0 ? (indexContent - step) : 0;
-                        var searchcontent = arr2[i].slice(indexContent - step, indexContent + 5)
-                        arrResults.push("....." + searchcontent + ".....");
-                    }
-                    else
-                        arrResults.push("");
-                }
-                //内容匹配
-                else if (indexContent != -1) {
-                    indexItem.push(i); // 保存匹配值的索引
-
-                    startindex = (indexContent - step) >= 0 ? (indexContent - step) : 0;
-                    var searchcontent = arr2[i].slice(indexContent - step, indexContent + 5)
-                    arrResults.push("....." + searchcontent + ".....");
-                }
-            }
-
-            // 输出总共匹配到的数目
-            var totalDiv = tmpDiv.cloneNode(true);
-            totalDiv.innerHTML = '<b>总匹配：' + indexItem.length + ' 项<hr></b>';
-            searchResults.appendChild(totalDiv);
-
-            // 未匹配到内容的情况
-            if (indexItem.length == 0) {
-                var itemDiv = tmpDiv.cloneNode(true);
-                itemDiv.innerText = '未匹配到内容...';
-                searchResults.appendChild(itemDiv);
-            }
-
-            // 将所有匹配内容进行组合
-            for (i = 0; i < arrResults.length; i++) {
-                var itemDiv = tmpDiv.cloneNode(true);
-                itemDiv.innerHTML = '<a data-pjax class="searchresults" href="' + arrLinks[indexItem[i]] + '"><b>[' + arrTitles[indexItem[i]] +
-                    ']</b><p>' + arrResults[i] + '</p></a><hr />';
-                searchResults.appendChild(itemDiv);
-            }
-        }
-    </script>
-    </div>
-                    <div class="mobilebar"><head>
-  <!-- 引入Bootstrap核心样式文件 -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/css/bootstrap.min.css">
-</head>
-<style>
-  .navmobile {
-    z-index: 15;
-    max-height: 40vh;
-    overflow-y: scroll;
-    overflow-x: hidden;
-  }
-
-  @media screen and (max-width: 1200px) {
-    .navbar {
-      max-width: 100vw;
-    }
-  }
-
-  @media screen and (max-width:1200px) and (min-width: 768px) {
-    @media (min-width: 768px) {
-      .navbar-nav {
-        float: right;
-        margin: 0;
-      }
-    }
-  }
-
-  @media screen and (max-width:768px) {
-    .mbapspan {
-      padding: 0;
-    }
-  }
-</style>
-<div class="pjaxloading"  onclick="pjaxloadingClose()">
-  <div class="loadingbackground"></div>
-  <div id="loading">
-    <div class="loading">
-    </div>
-  </div>
-</div>
-<nav class="navbar navbar-inverse navbar-fixed-top navmobile">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#barmenu"
-        aria-expanded="false" id="barbutton">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a data-pjax class="navbar-brand" href="https://zch-star.github.io">zch-star 的博客&nbsp;&nbsp;|</a>
-      <span class="navbar-brand mbapspan"><i id="mbaplayer" class="fa fa-play-circle-o" aria-hidden="true"
-          style="font-size: 28px;top: 12px;position: absolute;" onclick="aplayerPlay();"></i></span>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="barmenu">
-      <ul class="nav navbar-nav">
-        
-        
-        <li>
-          <a data-pjax href="/">
-            首页
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a data-pjax href="/archives">
-            归档
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a data-pjax href="/tags">
-            标签
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a data-pjax href="/post/about">
-            关于
-          </a>
-        </li>
-        
-        
-        
-          
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
-
-
-  <!-- 引入jQuery核心js文件 -->
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
-  <script>
-    let btstate = false;
-    var bt = $("#barbutton");
-    var bm = $("#barmenu");
-    bt.click(function () {
-      dropdown();
-    })
-    function dropdown() {
-      console.log(btstate);
-      //下拉
-      if (btstate == false) {
-        bt.removeClass("collapsed");
-        bt.attr("aria-expanded", "true");
-        bm.attr("aria-expanded", "true")
-        bm.fadeIn(700);
-        btstate = true;
-      }
-      else {
-        bt.addClass("collapsed");
-        bt.attr("aria-expanded", "false");
-        bm.removeClass("in");
-        bm.hide();
-        bm.attr("aria-expanded", "false");
-        btstate = false;
-      }
-    }
-  </script> </div>
-                        <div id="main" class="col-xs-12 col-sm-12 col-md-12 col-lg-6 topindex">
-                            <link rel="stylesheet" href="https://zch-star.github.io/media/css/font-awesome.css">
-<div class="tag-container">
-    
-    <div class="postshow">
-        
-        <a data-pjax href="https://zch-star.github.io/post/oi-zhi-shi-shu/">
-            <div id="post" style="width:100%">
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
                 
-                <img src="" class="postimage">
-                
-        <div class="posttitlebox">
-            <div class="posttitle">
-                OI 知识树
-            </div>
-    </div>
-</div>
-</a>
-<div class="postinfo">
-    <div class="postdate"><i class="fa fa-calendar"></i>2021-02-24</div>
-    <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 26 min read</div>
-    <div class="posttag">
-        
-        <a data-pjax href="https://zch-star.github.io/tag/6rUcgoilX/" class="postlink">
-            <i class="fa fa-tag"></i> 模板
-        </a>
-        
-    </div>
-</div>
-
-</div>
-
-</div>
-                            <div>
-                                <div class="pcpagi">
-    <div class="pagi">
-        <ul>
-            
-            <li><a style="width:100px">&nbsp;</a></li>
-            
-                    <li><a id="page1">1</a></li>
-                    <li><a id="page2" class="active">2</a></li>
-                    <li><a id="page3">3</a></li>
                     
-            <li><a style="width:100px">&nbsp;</a></li>
-            
-                </ul>
-    </div>
-</div>
-
-<div id="pagination-prev" style="display:none"> 
-</div>
-<div id="pagination-next" style="display:none"> </div>
-
-<div class="pagination-container">
-      
-    
-</div>
-
-<script>
-    var prevstr = document.getElementById("pagination-prev").innerHTML;
-    var nextstr = document.getElementById("pagination-next").innerHTML;
-    var page1 = document.getElementById("page1");
-    var page2 = document.getElementById("page2");
-    var page3 = document.getElementById("page3");
-    page1.innerHTML = '-';
-    page2.innerHTML = '1';
-    page3.innerHTML = '-';
-    if (prevstr.length > 5) {
-        if (prevstr.indexOf("page/") != -1) {
-            var prevnum = parseInt(prevstr.split("page/")[1]);
-            page1.innerHTML = prevnum;
-            page2.innerHTML = prevnum + 1;
-        } else {
-            page1.innerHTML = 1;
-            page2.innerHTML = 2;
-        }
-    }
-    if (nextstr.indexOf("page/") != -1) {
-        var nextnum = parseInt(nextstr.split("page/")[1]);
-        page3.innerHTML = nextnum;
-        page2.innerHTML = nextnum - 1;
-    }
-</script>
-                                <div style="padding-bottom:10%"></div>
-                            </div>
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
                             
-                        </div>
-                        <div class="col-xs-6"></div>
-                        
-            </div>
-            
-        </div>
-        <div id="bg">
-        </div>
-        <div id="bgchoice" style="display: none">
-                    </div>
+                                
                     
-                    <div id="bgurl" style="display:none"></div>
-                       
-            </div>
-</div>
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
 </div>
 
-        <div id="landlord">
-            <div class="message" style="opacity:0"></div>
-            <canvas id="live2d" width="240" height="250" class="live2d"></canvas>
-        </div>
-        <div id="domainname" style="display:none">https://zch-star.github.io
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+    <div class="i-card">
+        <b>标签：#
+        模板</b>
+    </div>
+    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://zch-star.github.io/post/oi-zhi-shi-shu/">
+                        OI 知识树
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2021-02-24</time>
+                    
+                        <a href="https://zch-star.github.io/tag/6rUcgoilX/" class="post-tag i-tag
+                            i-tag-other_1">
+            #模板
+        </a>
+                        
                 </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            『OI  知识树』\huge\color{RoyalBlue}\mathcal{『OI\thickspace知识树』}『OI知识树』
+
+一、数据结构\Large\color{LimeGreen}\mathsf{一、数据结构}一、数据结构
+
+
+栈
+
+
+单调栈
+$ \diamond$ 例题：P5788 【模板】单调栈
+$ \diamond$ 代码：
+#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;stack&amp;gt;
+using namespace std;
+const int MAXN = 3e6;
+int n, top = 0, a[MAXN + 5], f[MAXN + 5], q[MAXN + 5];
+int main() {
+	cin &amp;gt;&amp;gt; n;
+	for (int i = 1; i &amp;lt;= n; i++) cin &amp;gt;&amp;gt; a[i];
+	for (int i = 1; i &amp;lt;= n; i++) {
+		while (top &amp;gt; 0 &amp;amp;&amp;amp; a[q[top]] &amp;lt; a[i]) f[q[top]] = i, top--;
+		top++; q[top] = i;
+	}
+	for (int i = 1; i &amp;lt;= n; i++) cout &amp;lt;&amp;lt; f[i] &amp;lt;&amp;lt; &amp;quot; &amp;quot;;
+	return 0;
+}
+
+
+
+
+
+
+
+
+队列
+
+
+优先队列
+$ \diamond$ 例题：P1090 [NOIP2004 提高组] 合并果子
+$ \diamond$ 代码：
+#include &amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+int n, x, ans;
+priority_queue &amp;lt;int, vector&amp;lt;int&amp;gt;, greater&amp;lt;int&amp;gt; &amp;gt;q;
+int main() {
+	cin &amp;gt;&amp;gt; n;
+	for (int i = 1; i &amp;lt;= n; i++) cin &amp;gt;&amp;gt; x, q.push(x);
+	while (q.size() &amp;gt;= 2){
+		int a = q.top(); q.pop();
+		int b = q.top(); q.pop();
+		ans += a + b;
+		q.push(a + b);
+	}
+	cout &amp;lt;&amp;lt; ans &amp;lt;&amp;lt; endl;
+	return 0;
+}
+
+
+
+单调队列
+$ \diamond$ 例题：P1440 求m区间内的最小值
+$ \diamond$ 代码：
+#include &amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+int n, m, a[2000010], head, tail;
+struct Node {
+	int data, num;
+} q[2000010];
+int main() {
+	scanf(&amp;quot;%d%d&amp;quot;, &amp;amp;n, &amp;amp;m);
+	for (int i = 1; i &amp;lt;= n; i++) scanf(&amp;quot;%d&amp;quot;, &amp;amp;a[i]);
+	printf(&amp;quot;0\n&amp;quot;);
+	head++, q[head].data = a[1], q[head].num = 1; tail++;
+	for (int i = 2; i &amp;lt;= n; i++) {
+		while (i - q[head].num &amp;gt; m) head++;
+		printf(&amp;quot;%d\n&amp;quot;, q[head].data);
+		while (q[tail].data &amp;gt; a[i] &amp;amp;&amp;amp; tail &amp;gt;= head) tail--;
+		tail++; q[tail].data = a[i]; q[tail].num = i;
+	}
+	return 0;
+}
+
+
+
+双端队列
+$ \diamond$ 例题：P2032 扫描
+$ \diamond$ 代码：
+#include &amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+int n, m, a[2000010], head, tail;
+struct Node {
+	int data, num;
+} q[2000010];
+int main() {
+	scanf(&amp;quot;%d%d&amp;quot;, &amp;amp;n, &amp;amp;m);
+	for (int i = 1; i &amp;lt;= n; i++) scanf(&amp;quot;%d&amp;quot;, &amp;amp;a[i]);
+	head++, q[head].data = a[1], q[head].num = 1; tail++;
+	for (int i = 2; i &amp;lt;= n; i++) {
+		while (i - q[head].num &amp;gt;= m) head++;
+		while (q[tail].data &amp;lt; a[i] &amp;amp;&amp;amp; tail &amp;gt;= head) tail--;
+		tail++; q[tail].data = a[i]; q[tail].num = i;
+		if (i &amp;gt;= m) printf(&amp;quot;%d\n&amp;quot;, q[head].data);
+	}
+	return 0;
+}
+
+
+
+
+
+
+
+
+堆
+
+
+二叉堆
+$ \diamond$ 例题：P1334 瑞瑞的木板
+$ \diamond$ 代码：
+#include &amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+typedef long long ll;
+
+int n;
+long long ans;
+priority_queue&amp;lt; ll, vector&amp;lt;ll&amp;gt;, greater&amp;lt;ll&amp;gt; &amp;gt; a;
+
+static char buf[100000],*p1=buf,*p2=buf;
+#define gc p1==p2&amp;amp;&amp;amp;(p2=(p1=buf)+fread(buf,1,100000,stdin),p1==p2)?EOF:*p1++;
+inline ll read() {
+	ll res=0,w=0;
+	char c=gc;
+	while (!isdigit(c)) w|=c==&#39;-&#39;,c=gc;
+	while (isdigit(c)) res=(res&amp;lt;&amp;lt;1)+(res&amp;lt;&amp;lt;3)+(c^48),c=gc;
+	if (w) res=-res;
+	return res;
+}
+
+inline void write(ll x) {
+	static int sta[50],top=0;
+	if (x&amp;lt;0) putchar(&#39;-&#39;),x=-x;
+	do {
+		sta[top++]=x%10,x/=10;
+	}while (x);
+	while (top) putchar(sta[--top]+48);
+	putchar(&#39;\n&#39;);
+}
+
+signed main() {
+// 	IOS;
+	n = read();
+	for (register int i = 1; i &amp;lt;= n; ++i) {
+		int k = read();
+		a.push(k);
+	}
+	for (register int i = 1; i &amp;lt; n; ++i) {
+		int p, q;
+		p = a.top(); a.pop();
+		q = a.top(); a.pop();
+		ans += p + q;
+		a.push(p + q);
+	}
+	write(ans);
+	return 0;
+}
+
+
+
+左偏树
+$ \diamond$ 例题：P3377 【模板】左偏树（可并堆）
+$ \diamond$ 代码：
+#include &amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+const int MAXN=100010;
+int n, m, op, x, y;
+int lc[MAXN], rc[MAXN], dist[MAXN], rt[MAXN];
+bool tf[MAXN];
+struct node
+{
+    int id, v;
+    bool operator&amp;lt;(node x)const{return v==x.v?id&amp;lt;x.id:v&amp;lt;x.v;}
+}v[MAXN];
+int __Find(int x){return rt[x]==x?x:rt[x]=__Find(rt[x]);}
+int __Merge(int x, int y) {
+	if (!x || !y) return x + y;
+	if (v[y] &amp;lt; v[x]) swap(x, y);
+	rc[x] = __Merge(rc[x], y);
+    if (dist[lc[x]] &amp;lt; dist[rc[x]]) swap(lc[x], rc[x]);
+    dist[x] = dist[rc[x]] + 1;
+    return x;
+}
+int main() {
+	dist[0] = -1;
+	scanf(&amp;quot;%d%d&amp;quot;, &amp;amp;n, &amp;amp;m);
+	for (int i = 1; i &amp;lt;= n; i++) scanf(&amp;quot;%d&amp;quot;, &amp;amp;v[i].v), rt[i] = i, v[i].id = i;
+	for (int i = 1; i &amp;lt;= m; i++) {
+		scanf(&amp;quot;%d%d&amp;quot;, &amp;amp;op, &amp;amp;x);
+		if (op == 1) {
+			scanf(&amp;quot;%d&amp;quot;, &amp;amp;y);
+			if (tf[x] || tf[y]) continue;
+			x = __Find(x); y = __Find(y);
+			if (x != y) rt[x] = rt[y] = __Merge(x, y);
+		}
+		if (op == 2) {
+			if (tf[x]) {printf(&amp;quot;-1\n&amp;quot;); continue;}
+			x = __Find(x);
+			printf(&amp;quot;%d\n&amp;quot;, v[x].v);
+			tf[x] = true;
+			rt[lc[x]] = rt[rc[x]] = rt[x] = __Merge(lc[x], rc[x]);
+			lc[x] = rc[x] = dist[x] = 0;
+		}
+	}
+	return 0;
+}
+
+
+
+斜堆
+$ \diamond$ 例题：P2475 [SCOI2008]斜堆
+$ \diamond$ 代码：
+待占坑。
+
+
+
+
+
+
+
+
+并查集
+
+
+模板并查集
+$ \diamond$ 例题：P1551 亲戚
+$ \diamond$ 代码：
+var
+  f:array[0..10001] of longint;
+  n,m,p,i,x,y:longint;
+
+function find(x:longint):longint;
+begin
+  if f[x]=x then exit(x);
+  f[x]:=find(f[x]);
+  exit(f[x]);
+end;
+
+begin
+  readln(n,m,p);
+  for i:=1 to n do f[i]:=i;
+  for i:=1 to m do
+    begin
+      readln(x,y);
+      x:=find(x);
+      y:=find(y);
+      f[y]:=x;
+    end;
+  for i:=1 to p do
+    begin
+      readln(x,y);
+      x:=find(x);
+      y:=find(y);
+      if x=y then writeln(&#39;Yes&#39;) else writeln(&#39;No&#39;);
+    end;
+end.
+
+
+
+带权并查集
+$ \diamond$ 例题：P2024 [NOI2001] 食物链
+$ \diamond$ 代码：
+待占坑。
+
+$ \diamond$ 例题：P1525 [NOIP2010 提高组] 关押罪犯
+$ \diamond$ 代码：
+#include &amp;lt;cstdio&amp;gt;
+#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;algorithm&amp;gt;
+using namespace std;
+const int MAXN = 1e5+5;
+struct Node {
+	int a, b, c;
+};
+int n, m, f[MAXN &amp;lt;&amp;lt; 1];
+Node a[MAXN];
+inline int __Find(int x) {
+	if (f[x] != x) f[x] = __Find(f[x]);
+	return f[x];
+}
+
+typedef long long ll;
+static char buf[100000],*p1=buf,*p2=buf;
+#define gc p1==p2&amp;amp;&amp;amp;(p2=(p1=buf)+fread(buf,1,100000,stdin),p1==p2)?EOF:*p1++;
+inline ll read() {
+	ll res=0,w=0;
+	char c=gc;
+	while (!isdigit(c)) w|=c==&#39;-&#39;,c=gc;
+	while (isdigit(c)) res=(res&amp;lt;&amp;lt;1)+(res&amp;lt;&amp;lt;3)+(c^48),c=gc;
+	if (w) res=-res;
+	return res;
+}
+bool cmp(Node a, Node b) {
+	return a.c &amp;gt; b.c;
+}
+int main() {
+	n = read(); m = read();
+	for (int i = 1; i &amp;lt;= (n &amp;lt;&amp;lt; 1); i++) f[i] = i;
+	for (int i = 1; i &amp;lt;= m; i++) a[i].a = read(), a[i].b = read(), a[i].c = read();
+	sort(a+1, a+m+1, cmp);
+	for (int i = 1; i &amp;lt;= m; i++) {
+		int fa = __Find(a[i].a);
+		int fb = __Find(a[i].b);
+		int ffa = __Find(a[i].a + n);
+		int ffb = __Find(a[i].b + n);
+		if(fa == fb) {
+			printf(&amp;quot;%d\n&amp;quot;, a[i].c);
+			return 0;
+		}
+		f[fa] = ffb;
+		f[fb] = ffa;
+	}
+	puts(&amp;quot;0&amp;quot;);
+	return 0;
+}
+
+
+
+可持久化并查集
+$ \diamond$ 例题：P3402 可持久化并查集
+$ \diamond$ 代码：
+待占坑。
+
+
+
+
+
+
+
+
+链表
+
+
+双向链表
+$ \diamond$ 例题：P1160 队列安排
+$ \diamond$ 代码：
+#include &amp;lt;cstdio&amp;gt;
+#include &amp;lt;iostream&amp;gt;
+using namespace std;
+const int MAXN = 1e5+5;
+struct Node {int L, R;};
+int n, m;
+Node a[MAXN];
+
+typedef long long ll;
+static char buf[100000],*p1=buf,*p2=buf;
+#define gc p1==p2&amp;amp;&amp;amp;(p2=(p1=buf)+fread(buf,1,100000,stdin),p1==p2)?EOF:*p1++;
+inline ll read() {
+	ll res=0,w=0;
+	char c=gc;
+	while (!isdigit(c)) w|=c==&#39;-&#39;,c=gc;
+	while (isdigit(c)) res=(res&amp;lt;&amp;lt;1)+(res&amp;lt;&amp;lt;3)+(c^48),c=gc;
+	if (w) res=-res;
+	return res;
+}
+
+inline void write(ll x) {
+	static int sta[50],top=0;
+	if (x&amp;lt;0) putchar(&#39;-&#39;),x=-x;
+	do {
+		sta[top++]=x%10,x/=10;
+	}while (x);
+	while (top) putchar(sta[--top]+48);
+	putchar(&#39; &#39;);
+}
+
+inline void __addRight(int x, int pos)  {
+	a[x].L = pos;
+	a[a[pos].R].L = x;
+	a[x].R = a[pos].R;
+	a[pos].R = x;
+}
+inline void __addLeft(int x, int pos) {
+	a[x].R = pos;
+	a[a[pos].L].R = x;
+	a[x].L = a[pos].L;
+	a[pos].L = x;
+}
+inline void __Del(int x) {
+	if (a[x].L == -1) return;
+	a[a[x].L].R = a[x].R;
+	a[a[x].R].L = a[x].L;
+	a[x].L = -1;
+	a[x].R = -1;
+}
+inline void __Go() {
+	int x = a[0].R;
+	while (1) {
+		write(x);
+		if (a[x].R == -1) break;
+		x = a[x].R;
+	}
+}
+inline void __Init() {
+	for (int i = 1; i &amp;lt;= n; i++) a[i].L = a[i].R = -1;
+	a[1].R = -1; a[1].L = 0; a[0].R = 1;
+}
+int main() {
+	n = read();
+	__Init();
+	for (int i = 2; i &amp;lt;= n; i++) {
+		int x = read(), y = read();
+		if (!y) __addLeft(i, x); else __addRight(i, x);
+	}
+	m = read();
+	for (int i = 1; i &amp;lt;= m; i++) {
+		int x = read();
+		__Del(x);
+	}
+	__Go();
+	return 0;
+}
+
+$ \diamond$ 例题：P1081 [NOIP2012 提高组] 开车旅行
+$ \diamond$ 代码：
+待占坑。
+
+
+
+块状链表
+$ \diamond$ 例题：P4008 [NOI2003] 文本编辑器
+$ \diamond$ 代码：
+#include&amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+char xch,xB[1&amp;lt;&amp;lt;15],*xS=xB,*xTT=xB;
+#define getc() (xS==xTT&amp;amp;&amp;amp;(xTT=(xS=xB)+fread(xB,1,1&amp;lt;&amp;lt;15,stdin),xS==xTT)?0:*xS++)
+inline int read()
+{
+    int x=0,f=1;char ch=getc();
+    while(ch&amp;lt;&#39;0&#39;|ch&amp;gt;&#39;9&#39;){if(ch==&#39;-&#39;)f=-1;ch=getc();}
+    while(ch&amp;gt;=&#39;0&#39;&amp;amp;&amp;amp;ch&amp;lt;=&#39;9&#39;){x=x*10+ch-&#39;0&#39;;ch=getc();}
+    return x*f;
+}//为了使程序跑得更快所使用的读入优化 
+const int maxn=2e3+10;
+struct node{
+    int nex,siz;//每一块数组的后继以及大小 
+    char a[maxn&amp;lt;&amp;lt;1];
+}b[maxn&amp;lt;&amp;lt;2];
+int pool[maxn&amp;lt;&amp;lt;2],cnt,curpos;//内存池、指针以及当前光标位置 
+inline int modi(){return pool[cnt++];}//内存分配 
+inline void dele(int x){pool[--cnt]=x;}//内存回收 
+inline void init()
+{
+    for(int i=1;i&amp;lt;(maxn&amp;lt;&amp;lt;2);++i) pool[i]=i;//维护内存池，动态分配回收内存 
+    cnt=1;
+    b[0].siz=0,b[0].nex=-1;//新建一个0号节点，方便操作 
+}
+inline void add(int x,int y,int num,char c[])//在第x块后添加一个编号为y的块，长度为num 
+{
+    if(y!=-1)
+    {
+        b[y].nex=b[x].nex,b[y].siz=num;
+        memcpy(b[y].a,c,num);
+    }
+    b[x].nex=y;
+}
+inline void merge(int x,int y)//将第x块和第y块合并 
+{
+    memcpy(b[x].a+b[x].siz,b[y].a,b[y].siz);
+    b[x].siz+=b[y].siz,b[x].nex=b[y].nex;
+    dele(y);
+}
+inline void split(int cur,int pos)//将第cur块从pos处分割 
+{
+    if(cur==-1||pos==b[cur].siz) return ;
+    add(cur,modi(),b[cur].siz-pos,b[cur].a+pos);
+    b[cur].siz=pos;
+}
+inline int pos(int &amp;amp;x)//寻找当前光标所在的块和块内位置 
+{
+    int now=0;
+    while(now!=-1&amp;amp;&amp;amp;x&amp;gt;b[now].siz) x-=b[now].siz,now=b[now].nex;
+    return now;
+}
+inline void insert(int p,int num,char c[])//在p位置之后插入长度为num的字符串 
+{
+    int now=pos(p);
+    split(now,p);
+    int tot=0,nb,st=now;
+    while(tot+maxn&amp;lt;=num)//维护块状链表平衡 
+    {
+        nb=modi();
+        add(now,nb,maxn,c+tot);
+        tot+=maxn;
+        now=nb;
+    }
+    if(num-tot)
+        nb=modi(),add(now,nb,num-tot,c+tot);
+    if(b[now].siz+b[nb].siz&amp;lt;maxn&amp;amp;&amp;amp;nb!=-1)//不用对整个链表进行判断，部分maintain 
+    	merge(now,nb),nb=b[now].nex;
+    if(b[st].siz+b[b[st].nex].siz&amp;lt;maxn&amp;amp;&amp;amp;b[st].nex!=-1)//同理 
+    	merge(st,b[st].nex);
+//    maintain();
+}
+inline void erase(int p,int num)//在p位置之后删除长度为num的字符串
+{
+    int now=pos(p);
+    split(now,p);
+    int nex=b[now].nex;
+    while(nex!=-1&amp;amp;&amp;amp;num&amp;gt;b[nex].siz)
+        num-=b[nex].siz,nex=b[nex].nex;
+    split(nex,num);
+    nex=b[nex].nex;
+    for(int i=b[now].nex;i!=nex;i=b[now].nex)
+        b[now].nex=b[i].nex,dele(i);
+    while(b[now].siz+b[nex].siz&amp;lt;maxn&amp;amp;&amp;amp;nex!=-1)//不用对整个链表进行判断，部分maintain 
+    	merge(now,nex),nex=b[now].nex;
+//    maintain();
+}
+char ans[20000000];
+inline void get(int p,int num)//输出p位置后长度为num的字符串
+{
+    int cur=pos(p);
+    int tot=b[cur].siz-p;
+    if(num&amp;lt;tot) tot=num;
+    memcpy(ans,b[cur].a+p,tot);
+    int now=b[cur].nex;
+    while(now!=-1&amp;amp;&amp;amp;num&amp;gt;=tot+b[now].siz)
+    {
+        memcpy(ans+tot,b[now].a,b[now].siz);
+        tot+=b[now].siz,now=b[now].nex;
+    }
+    if(num-tot&amp;gt;0&amp;amp;&amp;amp;now!=-1)
+        memcpy(ans+tot,b[now].a,num-tot);
+    ans[num]=&#39;\0&#39;;//为了不清空，用\0结束 
+    printf(&amp;quot;%s\n&amp;quot;,ans);
+}
+inline char opt()
+{
+	char c=getc();
+	while(c!=&#39;M&#39;&amp;amp;&amp;amp;c!=&#39;I&#39;&amp;amp;&amp;amp;c!=&#39;D&#39;&amp;amp;&amp;amp;c!=&#39;G&#39;&amp;amp;&amp;amp;c!=&#39;P&#39;&amp;amp;&amp;amp;c!=&#39;N&#39;) c=getc();
+	return c;
+}//为了不与读入优化冲突 
+int main()
+{
+//	freopen(&amp;quot;3.in&amp;quot;,&amp;quot;r&amp;quot;,stdin);
+//	freopen(&amp;quot;3.ans&amp;quot;,&amp;quot;w&amp;quot;,stdout);
+    init();
+    int m;
+
+    scanf(&amp;quot;%d&amp;quot;,&amp;amp;m);
+    for(int i=1;i&amp;lt;=m;++i)
+    {
+        switch(opt())
+        {
+            case &#39;M&#39;:curpos=read();break;
+            case &#39;I&#39;:
+                int tmp;
+                tmp=read();
+                for(int i=0;i&amp;lt;tmp;++i)
+                {
+                    ans[i]=getc();
+                    if(ans[i]&amp;lt;32||ans[i]&amp;gt;126) --i;
+                }
+                insert(curpos,tmp,ans);
+                    break;
+            case &#39;D&#39;:
+                tmp=read();
+                erase(curpos,tmp);
+                break;
+            case &#39;G&#39;:
+                tmp=read();
+                get(curpos,tmp);
+                break;
+            case &#39;P&#39;:--curpos;break;
+            case &#39;N&#39;:++curpos;break;
+        }
+    }
+    return 0;
+}
+
+
+
+
+
+
+
+
+树状数组
+
+
+求逆序对
+$ \diamond$ 例题：P1908 逆序对
+$ \diamond$ 代码：
+#include &amp;lt;cstdio&amp;gt;
+#include &amp;lt;algorithm&amp;gt;
+#include &amp;lt;sys/mman.h&amp;gt;
+#include &amp;lt;sys/stat.h&amp;gt;
+#define For(i, x, y) for (register int i = x; i &amp;lt;= y; ++i)
+#define For_d(i, x, y) for (register int i = x; i &amp;gt;= y; --i)
+using namespace std;
+const int MAXN = 5e5+5;
+int a[MAXN], b[MAXN], c[MAXN], n;
+long long s;
+char* p;
+
+typedef long long ll;
+
+inline void read(int&amp;amp; x) {
+    x = 0;
+    while (*p &amp;lt; 48) p++;
+    while (*p &amp;gt;= 48) x = (x &amp;lt;&amp;lt; 3) + (x &amp;lt;&amp;lt; 1) + *p - 48, p++;
+}
+
+inline void write(ll x) {
+    char s[20]; int c=0;
+    do {s[c++]=x%10; x/=10; } while(x);
+    For_d(i, c-1, 0) putchar_unlocked(s[i] + 48);
+}
+
+inline void init() {
+    struct stat in;
+    fstat(0, &amp;amp;in);
+    p = (char*)mmap(0, in.st_size, 1, 2, 0, 0);
+}
+inline void mdf(int x){while(x&amp;lt;=n) ++c[x],x+=x&amp;amp;-x;}
+inline void qry(int x){while(x) s+=1ll*c[x],x^=x&amp;amp;-x;}
+inline int cmp(int x, int y) {return b[x] &amp;gt;= b[y];}
+int main() {
+    init();
+	read(n);
+	For(i, 1, n) read(b[i]), a[i] = i;
+	stable_sort(a+1, a+n+1, cmp);
+	For(i, 1, n) mdf(a[i]),qry(a[i]-1);
+	write(s);
+	return 0;
+}
+
+
+
+二维树状数组
+$ \diamond$ 例题：P4514 上帝造题的七分钟
+$ \diamond$ 代码：
+待占坑。
+
+
+
+
+
+
+
+
+线段树
+
+
+模板线段树
+$ \diamond$ 例题：P3372 【模板】线段树 1
+$ \diamond$ 代码：
+#include&amp;lt;cstdio&amp;gt;
+#include&amp;lt;iostream&amp;gt;
+using namespace std;
+#define For(i, x, y) for (register int i = x; i &amp;lt;= y; ++i)
+typedef long long ll;
+const int MAXN = 1e5;
+struct Node {
+    int l, r;
+    ll sum, add;
+};
+Node tr[4*MAXN+5];
+int n, m, op, L, R, x;
+
+static char buf[100000],*p1=buf,*p2=buf;
+#define gc p1==p2&amp;amp;&amp;amp;(p2=(p1=buf)+fread(buf,1,100000,stdin),p1==p2)?EOF:*p1++;
+inline ll read() {
+    ll res=0,w=0;
+    char c=gc;
+    while (!isdigit(c)) w|=c==&#39;-&#39;,c=gc;
+    while (isdigit(c)) res=(res&amp;lt;&amp;lt;1)+(res&amp;lt;&amp;lt;3)+(c^48),c=gc;
+    if (w) res=-res;
+    return res;
+}
+inline void write(ll x) {
+    static int sta[50],top=0;
+    if (x&amp;lt;0) putchar(&#39;-&#39;),x=-x;
+    do {
+        sta[top++]=x%10,x/=10;
+    }while (x);
+    while (top) putchar(sta[--top]+48);
+    putchar(&#39;\n&#39;);
+}
+
+inline void __Build(int rt, int l, int r) {
+    tr[rt].l = l; tr[rt].r = r;
+    if (l == r) {
+        ll x = read();
+        tr[rt].sum = x;
+        return;
+    }
+    int mid = (l+r)&amp;gt;&amp;gt;1;
+    __Build(rt&amp;lt;&amp;lt;1, l, mid);
+    __Build(rt&amp;lt;&amp;lt;1|1, mid+1, r);
+    tr[rt].sum = tr[rt&amp;lt;&amp;lt;1].sum + tr[rt&amp;lt;&amp;lt;1|1].sum;
+}
+inline void __Update(int rt, int L, int R, int x) {
+    int l = tr[rt].l, r = tr[rt].r;
+    if (L &amp;lt;= l &amp;amp;&amp;amp; r &amp;lt;= R) {
+        tr[rt].sum += x*(r-l+1);
+        tr[rt].add += x;
+        return;
+    }
+    int len = (r-l+1);
+    if (tr[rt].add) {
+        tr[rt&amp;lt;&amp;lt;1].add += tr[rt].add;
+        tr[rt&amp;lt;&amp;lt;1|1].add += tr[rt].add;
+        tr[rt&amp;lt;&amp;lt;1].sum += tr[rt].add*(len-(len&amp;gt;&amp;gt;1));
+        tr[rt&amp;lt;&amp;lt;1|1].sum += tr[rt].add*(len&amp;gt;&amp;gt;1);
+        tr[rt].add = 0;
+    }
+    int mid = (l+r)&amp;gt;&amp;gt;1;
+    if (L &amp;lt;= mid) __Update(rt&amp;lt;&amp;lt;1, L, R, x);
+    if (mid &amp;lt; R) __Update(rt&amp;lt;&amp;lt;1|1, L, R, x);
+    tr[rt].sum = tr[rt&amp;lt;&amp;lt;1].sum + tr[rt&amp;lt;&amp;lt;1|1].sum;
+}
+inline ll __Query(int rt, int L, int R) {
+    int l =  tr[rt].l, r = tr[rt].r;
+    if (L &amp;lt;= l &amp;amp;&amp;amp; r &amp;lt;= R) return tr[rt].sum;
+    int len = (r-l+1);
+    if (tr[rt].add) {
+        tr[rt&amp;lt;&amp;lt;1].add += tr[rt].add;
+        tr[rt&amp;lt;&amp;lt;1|1].add += tr[rt].add;
+        tr[rt&amp;lt;&amp;lt;1].sum += tr[rt].add*(len-(len&amp;gt;&amp;gt;1));
+        tr[rt&amp;lt;&amp;lt;1|1].sum += tr[rt].add*(len&amp;gt;&amp;gt;1);
+        tr[rt].add = 0;
+    }
+    ll S = 0;
+    int mid = (l+r) &amp;gt;&amp;gt; 1;
+    if (L &amp;lt;= mid) S += __Query(rt&amp;lt;&amp;lt;1, L, R);
+    if (mid &amp;lt; R) S += __Query(rt&amp;lt;&amp;lt;1|1, L, R);
+    return S;
+}
+int main() {
+    n = read(), m = read();
+    __Build(1, 1, n);
+    For(i, 1, m) {
+        op = read();
+        if (op == 1) {L = read(); R = read(); x = read(); __Update(1, L, R, x);}
+        else {L = read(); R = read(); write(__Query(1, L, R));}
+    }
+    return 0;
+}
+
+$ \diamond$ 例题：P3373 【模板】线段树 2
+$ \diamond$ 代码：
+#include &amp;lt;cstdio&amp;gt;
+#include &amp;lt;iostream&amp;gt;
+using namespace std;
+#define For(i, x, y) for (register int i = x; i &amp;lt;= y; ++i)
+typedef long long ll;
+const int MAXN = 1e5;
+struct Node {
+    int l, r;
+    ll mul, add, data;
+};
+Node tr[MAXN*4 + 5];
+ll a[MAXN], n, m, P;
+
+static char buf[100000],*p1=buf,*p2=buf;
+#define gc p1==p2&amp;amp;&amp;amp;(p2=(p1=buf)+fread(buf,1,100000,stdin),p1==p2)?EOF:*p1++;
+inline ll read() {
+    ll res=0,w=0;
+    char c=gc;
+    while (!isdigit(c)) w|=c==&#39;-&#39;,c=gc;
+    while (isdigit(c)) res=(res&amp;lt;&amp;lt;1)+(res&amp;lt;&amp;lt;3)+(c^48),c=gc;
+    if (w) res=-res;
+    return res;
+}
+inline void write(ll x) {
+    static int sta[50],top=0;
+    if (x&amp;lt;0) putchar(&#39;-&#39;),x=-x;
+    do {
+        sta[top++]=x%10,x/=10;
+    }while (x);
+    while (top) putchar(sta[--top]+48);
+    putchar(&#39;\n&#39;);
+}
+
+inline void Up(int rt) {tr[rt].data = (tr[rt&amp;lt;&amp;lt;1].data + tr[rt&amp;lt;&amp;lt;1|1].data) % P;}
+inline void Build(int rt, int l, int r) {
+    tr[rt].l = l; tr[rt].r = r; tr[rt].mul = 1; tr[rt].add = 0;
+    if (l == r) {tr[rt].data = a[l]; return;}
+    int mid = (l+r)&amp;gt;&amp;gt;1;
+    Build(rt &amp;lt;&amp;lt; 1, l, mid);
+    Build(rt &amp;lt;&amp;lt; 1 | 1, mid+1, r);
+    Up(rt);
+}
+inline void pushdown(int rt) {
+    int L = (rt &amp;lt;&amp;lt; 1), R = (rt &amp;lt;&amp;lt; 1 | 1);
+    tr[L].mul *= tr[rt].mul; tr[L].mul %= P;
+    tr[L].add *= tr[rt].mul; tr[L].add %= P;
+    tr[L].data *= tr[rt].mul; tr[L].data %= P;
+    tr[R].mul *= tr[rt].mul; tr[R].mul %= P;
+    tr[R].add *= tr[rt].mul; tr[R].add %= P;
+    tr[R].data *= tr[rt].mul; tr[R].data %= P;
+    tr[rt].mul = 1;
+    tr[L].add += tr[rt].add; tr[L].add %= P;
+    tr[L].data += tr[rt].add * (tr[L].r-tr[L].l+1); tr[L].data %= P;
+    tr[R].add += tr[rt].add; tr[R].add %= P;
+    tr[R].data += tr[rt].add * (tr[R].r-tr[R].l+1); tr[R].data %= P;
+    tr[rt].add = 0;
+}
+inline void change_chen(ll l, ll r, ll k, ll rt) {
+    int L = tr[rt].l, R = tr[rt].r;
+    if (l &amp;lt;= L &amp;amp;&amp;amp; R &amp;lt;= r) {
+        tr[rt].data *= k;
+        tr[rt].mul *= k;
+        tr[rt].add *= k;
+        return;
+    }
+    pushdown(rt);
+    int mid = (L+R) &amp;gt;&amp;gt; 1;
+    if (l &amp;lt;= mid) change_chen(l, r, k, rt&amp;lt;&amp;lt;1);
+    if (mid &amp;lt; r) change_chen(l, r, k, rt&amp;lt;&amp;lt;1|1);
+    Up(rt);
+}
+inline void change_jia(ll l, ll r, ll k, ll rt) {
+    int L = tr[rt].l, R = tr[rt].r;
+    if (l &amp;lt;= L &amp;amp;&amp;amp; R &amp;lt;= r) {
+        tr[rt].add += k;
+        tr[rt].data += k*(R-L+1);
+        return;
+    }
+    pushdown(rt);
+    int mid = (L+R) &amp;gt;&amp;gt; 1;
+    if (l &amp;lt;= mid) change_jia(l, r, k, rt&amp;lt;&amp;lt;1);
+    if (mid &amp;lt; r) change_jia(l, r, k, rt&amp;lt;&amp;lt;1|1);
+    Up(rt);
+}
+inline ll Query(int l, int r, int rt) {
+    int L = tr[rt].l, R = tr[rt].r;
+    if (l &amp;lt;= L &amp;amp;&amp;amp; R &amp;lt;= r) return tr[rt].data;
+    pushdown(rt);
+    ll S = 0, mid = (L+R) &amp;gt;&amp;gt; 1;
+    if (l &amp;lt;= mid) S += Query(l, r, rt &amp;lt;&amp;lt; 1); S %= P;
+    if (mid &amp;lt; r) S += Query(l, r, rt &amp;lt;&amp;lt; 1 | 1); S %= P;
+    return S;
+}
+int main() {
+    n = read(); m = read(); P = read();
+    For(i, 1, n) a[i] = read();
+    Build(1, 1, n);
+    For(i, 1, m) {
+        int op = read();
+        if (op == 1) {
+            ll x = read(), y = read(), k = read();
+            change_chen(x, y, k, 1);
+        } else if (op == 2) {
+            ll x = read(), y = read(), k = read();
+            change_jia(x, y, k, 1);
+        } else if (op == 3) {
+            ll x = read(), y = read();
+            write(Query(x, y, 1));
+        }
+    }
+    return 0;
+}
+
+$ \diamond$ 例题：P6242 【模板】线段树 3
+$ \diamond$ 代码：
+待占坑。
+
+
+
+权值线段树
+$ \diamond$ 例题：暂无
+$ \diamond$ 代码：
+待占坑。
+
+
+
+动态开点线段树
+$ \diamond$ 例题：暂无
+$ \diamond$ 代码：
+待占坑。
+
+
+
+zkw 线段树
+$ \diamond$ 例题：暂无
+$ \diamond$ 代码：
+待占坑。
+
+
+
+二维线段树
+$ \diamond$ 例题：暂无
+$ \diamond$ 代码：
+待占坑。
+
+
+
+线段树合并
+$ \diamond$ 例题：暂无
+$ \diamond$ 代码：
+待占坑。
+
+
+
+可持久化线段树（主席树）
+
+
+区间第 k 小
+⋄\diamond⋄ 例题：暂无
+⋄\diamond⋄ 代码：
+待占坑。
+
+
+
+带修主席树
+$ \diamond$ 例题：暂无
+$ \diamond$ 代码：
+待占坑。
+
+
+
+
+
+
+
+
+
+平衡树
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://zch-star.github.io/post/oi-zhi-shi-shu/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar" style="background-image: url(https://zch-star.github.io/images/avatar.png?v=1614145061290)">
+        </div>
+        <h1 class="id_card-title">
+            zch-star 的博客
+        </h1>
+        <h2 class="id_card-description">
+            『给岁月以文明，而不是给文明以岁月』
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                    <!-- twitter -->
+                    
+                            <!-- weibo -->
+                            
+                                    <!-- facebook -->
+                                    
+
+        </div>
+    </div>
+    
+
+                        <!-- 公告栏 -->
+                        
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://zch-star.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
 </body>
 
 </html>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
-
-
-<script>
-    var bgchoice = $('#bgchoice').html();
-    var bg = $('#bg');
-    var bgurl = document.getElementById("bgurl").innerHTML;
-    if (bgchoice == 'default')
-        for (var i = 0; i < 3; i++)
-            bgurl = bgurl.replace("\\", "/");
-    bg.css("background", "url('" + bgurl + "')");
-
-    window.onload = function () {
-        aplayerbtnInit();
-    }
-</script>
