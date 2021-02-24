@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zch-star.github.io</id>
     <title>zch-star 的博客</title>
-    <updated>2021-02-24T04:28:22.742Z</updated>
+    <updated>2021-02-24T04:42:25.108Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zch-star.github.io"/>
     <link rel="self" href="https://zch-star.github.io/atom.xml"/>
@@ -10,6 +10,42 @@
     <logo>https://zch-star.github.io/images/avatar.png</logo>
     <icon>https://zch-star.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, zch-star 的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[题解 CF88A 【Chord】]]></title>
+        <id>https://zch-star.github.io/post/ti-jie-cf88a-chord/</id>
+        <link href="https://zch-star.github.io/post/ti-jie-cf88a-chord/">
+        </link>
+        <updated>2021-02-24T04:40:21.000Z</updated>
+        <content type="html"><![CDATA[<p>原题链接：<a href="https://www.luogu.com.cn/problem/CF88A">洛谷 CF88A 【Chord】</a></p>
+<h2 id="sol"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mi>o</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">Sol</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span></span></span></span></h2>
+<p><s>这道题我被坑了好几次</s>，题目中的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">∣</mi><mi>X</mi><mi>Y</mi><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">|XY|</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mord">∣</span></span></span></span> 不是指它们乘积的绝对值，而是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle mathsize="1.2em"><mstyle mathcolor="red"><mtext mathvariant="monospace">它们的差的绝对值</mtext></mstyle></mstyle></mrow><annotation encoding="application/x-tex">\large\color{red}\texttt{它们的差的绝对值}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.733332em;vertical-align:0em;"></span><span class="mord text sizing reset-size6 size7" style="color:red;"><span class="mord texttt cjk_fallback" style="color:red;">它们的差的绝对值</span></span></span></span></span>！</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext mathvariant="monospace">Then</mtext></mrow><annotation encoding="application/x-tex">\texttt{Then}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61111em;vertical-align:0em;"></span><span class="mord text"><span class="mord texttt">Then</span></span></span></span></span>，我们就可以<s>愉快的打暴力了</s>。</p>
+<p>还有一个小注意点，每次都需要排序一下，当它们为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>strange</mtext></mrow><annotation encoding="application/x-tex">\text{strange}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord">strange</span></span></span></span></span> 时，要把第一个音符提高八度，也就是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>+</mo><mn>12</mn></mrow><annotation encoding="application/x-tex">+12</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">+</span><span class="mord">1</span><span class="mord">2</span></span></span></span>，然后再接着往下判断。</p>
+<h2 id="code"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi><mi>o</mi><mi>d</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Code</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span></span></span></span></h2>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+string gett[13] = {&quot;C&quot;, &quot;C#&quot;, &quot;D&quot;, &quot;D#&quot;, &quot;E&quot;, &quot;F&quot;, &quot;F#&quot;, &quot;G&quot;, &quot;G#&quot;, &quot;A&quot;, &quot;B&quot;, &quot;H&quot;}; //思路跟楼上差不多，根据字符串排序
+string c1, c2, c3;
+int a[4];
+int main() {
+	cin &gt;&gt; c1 &gt;&gt; c2 &gt;&gt; c3;
+	for (int i = 0; i &lt; 13; ++i) { //转为数字
+		if (c1 == gett[i]) a[1] = i;
+		if (c2 == gett[i]) a[2] = i;
+		if (c3 == gett[i]) a[3] = i;
+	}
+	for (int i = 1; i &lt;= 3; ++i) {
+		sort(a + 1, a + 4); //排序
+		if ((abs(a[1] - a[2]) == 4 &amp;&amp; abs(a[2] - a[3]) == 3)) {cout &lt;&lt; &quot;major&quot; &lt;&lt; endl; return 0;} //判断为 major
+        else if ((abs(a[1] - a[2]) == 3 &amp;&amp; abs(a[2] - a[3]) == 4)) {cout &lt;&lt; &quot;minor&quot; &lt;&lt; endl; return 0;} //判断为 minor
+		a[1] += 12; //第一个音符+=12
+	}
+	cout &lt;&lt; &quot;strange&quot; &lt;&lt; endl; //strange
+	return 0;
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[OI 知识树]]></title>
         <id>https://zch-star.github.io/post/oi-zhi-shi-shu/</id>
